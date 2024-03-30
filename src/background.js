@@ -1,3 +1,5 @@
+import { openTerminal } from "./actions/backgroundActions.js";
+
 // Listen for messages from the content script
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   if (message.action === "getTabsInfo") {
@@ -9,3 +11,10 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     return true;
   }
 });
+
+// chrome.commands.onCommand.addListener(function (command) {
+//   if (command === "open-terminal") {
+//     openTerminal();
+//   }
+// });
+
