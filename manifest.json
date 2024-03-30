@@ -1,0 +1,26 @@
+{
+    "manifest_version": 3,
+    "name": "Browser CLI",
+    "version": "1.0",
+    "description": "a CLI for the browser",
+    "permissions": [
+        "activeTab",
+        "tabs"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "./popup/popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ]
+}
