@@ -1,6 +1,11 @@
-import { sendOpenTerminalCmd } from "./actions/backgroundActions.js";
+import {
+  sendCloseTerminalCmdToTabs,
+  sendOpenTerminalCmd,
+} from "./actions/backgroundActions.js";
 
 let openTerminal = false;
+//ids of tabs where terminal is open so we can close them all
+let tabsWithOpenTerminal = [];
 
 // Listen for messages from the content script
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
@@ -17,15 +22,20 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 //send open terminal command on current tab when shortcut is clicked
 chrome.commands.onCommand.addListener(function (command) {
   if (command === "open-terminal") {
-    openTerminal = true;
-    sendOpenTerminalCmd();
+    if (openTerminal) {
+      openTerminal = false;
+      sendCloseTerminalCmdToTabs(tabsWithOpenTerminal);
+    } else {
+      openTerminal = true;
+      sendOpenTerminalCmd(tabsWithOpenTerminal);
+    }
   }
 });
 
 //when tab change open terminal in new tab
 chrome.tabs.onActivated.addListener(function (activeInfo) {
-  console.log("active info " + activeInfo);
+  console.log(activeInfo);
   if (openTerminal) {
-    sendOpenTerminalCmd();
+    sendOpenTerminalCmd(tabsWithOpenTerminal);
   }
 });
