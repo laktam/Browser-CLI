@@ -32,10 +32,12 @@ chrome.commands.onCommand.addListener(function (command) {
   }
 });
 
-//when tab change open terminal in new tab
+//when tab change open terminal in the new tab
 chrome.tabs.onActivated.addListener(function (activeInfo) {
   console.log(activeInfo);
   if (openTerminal) {
     sendOpenTerminalCmd(tabsWithOpenTerminal);
   }
 });
+
+//if terminal is open it should be open in new created tab
