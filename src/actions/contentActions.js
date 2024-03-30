@@ -8,6 +8,10 @@ function displayAllTabs(response) {
   });
 }
 
-function openTerminal() {}
+function openTerminal() {
+  console.log("open terminal in content script");
+  let container = document.createElement("div");
+  // container;
+}
 
 export { displayAllTabs, openTerminal };

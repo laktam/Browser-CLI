@@ -1,12 +1,1 @@
-(() => {
-  "use strict";
-  chrome.runtime.onMessage.addListener(function (e, n, t) {
-    if ("getTabsInfo" === e.action)
-      return (
-        chrome.tabs.query({}, function (e) {
-          t(e);
-        }),
-        !0
-      );
-  });
-})();
+(()=>{"use strict";function n(){chrome.tabs.query({active:!0,currentWindow:!0},(function(n){chrome.tabs.sendMessage(n[0].id,{action:"open-terminal"})}))}let e=!1;chrome.runtime.onMessage.addListener((function(n,e,t){if("getTabsInfo"===n.action)return chrome.tabs.query({},(function(n){t(n)})),!0})),chrome.commands.onCommand.addListener((function(t){"open-terminal"===t&&(e=!0,n())})),chrome.tabs.onActivated.addListener((function(t){console.log("active info "+t),e&&n()}))})();

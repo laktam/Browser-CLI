@@ -5,7 +5,8 @@
     "description": "a CLI for the browser",
     "permissions": [
         "activeTab",
-        "tabs"
+        "tabs",
+        "commands"
     ],
     "background": {
         "service_worker": "background.js"
@@ -22,5 +23,14 @@
                 "content.js"
             ]
         }
-    ]
+    ],
+    "commands": {
+        "open-terminal": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+X",
+                "mac": "MacCtrl+Shift+X"
+            },
+            "description": "Description of your keyboard shortcut"
+        }
+    }
 }
