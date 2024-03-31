@@ -2,7 +2,14 @@ import {
   closeTerminal,
   displayAllTabs,
   openTerminal,
+  sendInput,
 } from "./actions/contentActions.js";
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   chrome.extension.sendMessage({action: "ping"}, function(resp) {
+//       console.log(JSON.stringify(resp));
+//   });
+// });
 
 chrome.runtime.sendMessage({ action: "getTabsInfo" }, displayAllTabs);
 console.log("from content script");
