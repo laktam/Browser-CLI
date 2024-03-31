@@ -13,7 +13,6 @@ function displayAllTabs(response) {
 function openTerminal() {
   let container = createTerminalContainer();
   let input = createTerminalInput();
-  input.focus();
   input.addEventListener("keyup", function (event) {
     if (event.key === "Enter") {
       console.log(input.value);
@@ -22,6 +21,7 @@ function openTerminal() {
   });
   container.appendChild(input);
   document.body.appendChild(container);
+  input.focus();
   return container;
 }
 
