@@ -16,6 +16,10 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   } else if (message.action === "command") {
     console.log(message.command);
     sendResponse();
+  } else if (message.action === "after-loading") {
+    if (openTerminal) {
+      sendOpenTerminalCmd(tabsWithOpenTerminal);
+    }
   }
   // Return true to indicate that sendResponse will be called asynchronously
   return true;
@@ -47,16 +51,17 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
 });
 
 //if terminal is open it should be open in new created tab
-chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
-  if (changeInfo.status === "complete") {
-    if (openTerminal) {
-      sendOpenTerminalCmd(tabsWithOpenTerminal);
-    }
-  }
 
-  //fix error ???
-  return true;
-});
+// chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+//   if (changeInfo.status === "complete") {
+//     if (openTerminal) {
+//       sendOpenTerminalCmd(tabsWithOpenTerminal);
+//     }
+//   }
+
+//   //fix error ???
+//   return true;
+// });
 
 // chrome.tabs.onCreated.addListener(function (activeInfo) {
 //   console.log("on created");
