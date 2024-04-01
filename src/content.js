@@ -26,8 +26,3 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   sendResponse();
   return true;
 });
-
-window.addEventListener("load", function () {
-  // Send a message to the background script
-  chrome.runtime.sendMessage({ action: "after-loading" });
-});
