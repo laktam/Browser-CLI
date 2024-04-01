@@ -1,4 +1,8 @@
-import { createTerminalContainer, createTerminalInput } from "./domActions";
+import {
+  createResultSection,
+  createTerminalContainer,
+  createTerminalInput,
+} from "./domActions";
 
 function displayAllTabs(response) {
   // console.log(response);
@@ -12,13 +16,10 @@ function displayAllTabs(response) {
 
 function openTerminal() {
   let container = createTerminalContainer();
+  let resultSection = createResultSection();
   let input = createTerminalInput();
-  input.addEventListener("keyup", function (event) {
-    if (event.key === "Enter") {
-      console.log(input.value);
-      sendInput(input.value);
-    }
-  });
+
+  container.appendChild(resultSection);
   container.appendChild(input);
   document.body.appendChild(container);
   input.focus();

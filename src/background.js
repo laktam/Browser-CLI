@@ -38,7 +38,6 @@ chrome.commands.onCommand.addListener(function (command) {
 
 //when tab change open terminal in the new tab
 chrome.tabs.onActivated.addListener(function (activeInfo) {
-  console.log(activeInfo);
   if (openTerminal) {
     sendOpenTerminalCmd(tabsWithOpenTerminal);
   }
@@ -48,3 +47,22 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
 });
 
 //if terminal is open it should be open in new created tab
+chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+  if (changeInfo.status === "complete") {
+    if (openTerminal) {
+      sendOpenTerminalCmd(tabsWithOpenTerminal);
+    }
+  }
+
+  //fix error ???
+  return true;
+});
+
+// chrome.tabs.onCreated.addListener(function (activeInfo) {
+//   console.log("on created");
+//   if (openTerminal) {
+//     sendOpenTerminalCmd(tabsWithOpenTerminal);
+//   }
+//   //fix error ???
+//   return true;
+// });

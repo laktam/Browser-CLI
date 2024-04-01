@@ -2,7 +2,6 @@ import {
   closeTerminal,
   displayAllTabs,
   openTerminal,
-  sendInput,
 } from "./actions/contentActions.js";
 
 // document.addEventListener("DOMContentLoaded", () => {
@@ -22,5 +21,8 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   } else if (message.action === "close-terminal") {
     closeTerminal(terminal);
   }
+
+  //???
+  sendResponse();
   return true;
 });

@@ -1,3 +1,5 @@
+import { sendInput } from "./contentActions";
+
 function createTerminalContainer() {
   const terminal = document.createElement("div");
 
@@ -12,6 +14,16 @@ function createTerminalContainer() {
   return terminal;
 }
 
+function createResultSection() {
+  const div = document.createElement("div");
+  div.style.height = "40%";
+  div.style.boxSizing = "border-box";
+  div.style.width = "100%";
+  div.style.padding = "10px 31px";
+
+  return div;
+}
+
 function createTerminalInput() {
   const input = document.createElement("input");
   input.style.width = "100%";
@@ -19,7 +31,13 @@ function createTerminalInput() {
   input.style.padding = "6px";
   input.style.boxSizing = "border-box";
   input.style.border = "1px solid #ccc";
+  input.addEventListener("keyup", function (event) {
+    if (event.key === "Enter") {
+      console.log(input.value);
+      sendInput(input.value);
+    }
+  });
   return input;
 }
 
-export { createTerminalContainer, createTerminalInput };
+export { createTerminalContainer, createTerminalInput, createResultSection };
