@@ -46,7 +46,7 @@ function ls(data) {
   console.log("resultsecion", resultSection);
   let s = "";
   for (let tab of data) {
-    s += `<p class="tabs">${tab}</p>`;
+    s += `<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${tab}</p>`;
   }
   resultSection.innerHTML = s;
 }

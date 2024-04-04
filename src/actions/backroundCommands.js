@@ -3,7 +3,7 @@ async function ls() {
   let result = [];
   console.log(tabs);
   for (let tab of tabs) {
-    let tabString = tab.url + " : " + tab.title;
+    let tabString = tab.title + " : " + tab.url;
     if (tab.highlighted) {
       tabString += " *"; //active tab
     }
