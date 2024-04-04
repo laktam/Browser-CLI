@@ -1,3 +1,5 @@
+import { ls } from "./backroundCommands";
+
 async function getOpenTabId() {
   let id;
   // chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -14,4 +16,23 @@ function sendCommandToTab(id, command) {
   });
 }
 
-export { sendCommandToTab, getOpenTabId };
+function executeCommand(command) {
+  //get keyword list
+  const keywords = getKeywords(command);
+  if (command === "ls") {
+    ls().then((tabs) => {
+      getOpenTabId().then((id) => {
+        chrome.tabs.sendMessage(id, {
+          action: "ls",
+          data: tabs,
+        });
+      });
+    });
+  }
+}
+
+function getKeywords(command) {
+  // const keyword = [];
+  return command.split(" ");
+}
+export { sendCommandToTab, getOpenTabId, executeCommand };

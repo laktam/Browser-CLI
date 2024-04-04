@@ -16,6 +16,7 @@ function createTerminalContainer() {
 
 function createResultSection() {
   const div = document.createElement("div");
+  div.setAttribute("id", "terminalResultSection");
   div.style.height = "40%";
   div.style.boxSizing = "border-box";
   div.style.width = "100%";
@@ -40,4 +41,18 @@ function createTerminalInput() {
   return input;
 }
 
-export { createTerminalContainer, createTerminalInput, createResultSection };
+function ls(data) {
+  const resultSection = document.getElementById("terminalResultSection");
+  console.log("resultsecion", resultSection);
+  let s = "";
+  for (let tab of data) {
+    s += `<p class="tabs">${tab}</p>`;
+  }
+  resultSection.innerHTML = s;
+}
+export {
+  createTerminalContainer,
+  createTerminalInput,
+  createResultSection,
+  ls,
+};

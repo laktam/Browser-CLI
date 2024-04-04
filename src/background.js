@@ -1,4 +1,8 @@
-import { getOpenTabId, sendCommandToTab } from "./actions/backgroundActions.js";
+import {
+  executeCommand,
+  getOpenTabId,
+  sendCommandToTab,
+} from "./actions/backgroundActions.js";
 
 // let openTerminal = false;
 // tabid (int): terminalOpen (boolean)
@@ -6,12 +10,9 @@ let tabsWithOpenTerminal = {};
 
 // Listen for messages from the content script
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-  if (message.action === "getTabsInfo") {
-    chrome.tabs.query({}, function (tabs) {
-      sendResponse(tabs);
-    });
-  } else if (message.action === "command") {
+  if (message.action === "command") {
     console.log(message.command);
+    executeCommand(message.command);
     sendResponse();
   }
   // Return true to indicate that sendResponse will be called asynchronously
