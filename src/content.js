@@ -27,6 +27,9 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   }
 
   //???
+
+  //clear input after each background message
+  terminal.querySelector("#terminal-input").value = "";
   sendResponse();
   return true;
 });

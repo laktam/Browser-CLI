@@ -19,6 +19,17 @@ function sendCommandToTab(id, command) {
 function executeCommand(command) {
   //get keyword list
   const keywords = getKeywords(command);
+  getOpenTabId().then((id) => {
+    if (command === "ls") {
+      ls().then((tabs) => {
+        chrome.tabs.sendMessage(id, {
+          action: "ls",
+          data: tabs,
+        });
+      });
+    } else {
+    }
+  });
   if (command === "ls") {
     ls().then((tabs) => {
       getOpenTabId().then((id) => {
@@ -26,6 +37,13 @@ function executeCommand(command) {
           action: "ls",
           data: tabs,
         });
+      });
+    });
+  } else {
+    getOpenTabId().then((id) => {
+      chrome.tabs.sendMessage(id, {
+        action: "other",
+        data: "no data",
       });
     });
   }

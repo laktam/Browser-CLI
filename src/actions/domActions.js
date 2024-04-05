@@ -27,6 +27,7 @@ function createResultSection() {
 
 function createTerminalInput() {
   const input = document.createElement("input");
+  input.setAttribute("id", "terminal-input");
   input.style.width = "100%";
   //   input.style.height = "30px";
   input.style.padding = "6px";
