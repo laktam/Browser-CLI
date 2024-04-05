@@ -2,14 +2,22 @@ async function ls() {
   let tabs = await chrome.tabs.query({});
   let result = [];
   console.log(tabs);
+  let counter = 1;
   for (let tab of tabs) {
-    let tabString = tab.title + " : " + tab.url;
+    let tabString = "(" + counter + ") " + tab.title + " : " + tab.url;
     if (tab.highlighted) {
       tabString += " *"; //active tab
     }
     result.push(tabString);
+    counter++;
   }
   return result;
 }
 
-export { ls };
+async function cd(arg) {
+  console.log("arg ", arg);
+  let tabs = await chrome.tabs.query({});
+  chrome.tabs.update(tabs[Number.parseInt(arg) - 1].id, { active: true });
+}
+
+export { ls, cd };

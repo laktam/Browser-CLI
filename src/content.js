@@ -25,6 +25,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   } else if (message.action == "ls") {
     ls(message.data);
   }
+  // cd command is handled in bg script
 
   //???
 

@@ -1,4 +1,4 @@
-import { ls } from "./backroundCommands";
+import { cd, ls } from "./backroundCommands";
 
 async function getOpenTabId() {
   let id;
@@ -16,37 +16,52 @@ function sendCommandToTab(id, command) {
   });
 }
 
-function executeCommand(command) {
+async function executeCommand(command) {
   //get keyword list
   const keywords = getKeywords(command);
-  getOpenTabId().then((id) => {
-    if (command === "ls") {
-      ls().then((tabs) => {
-        chrome.tabs.sendMessage(id, {
-          action: "ls",
-          data: tabs,
-        });
-      });
-    } else {
-    }
-  });
-  if (command === "ls") {
-    ls().then((tabs) => {
-      getOpenTabId().then((id) => {
-        chrome.tabs.sendMessage(id, {
-          action: "ls",
-          data: tabs,
-        });
-      });
-    });
-  } else {
-    getOpenTabId().then((id) => {
-      chrome.tabs.sendMessage(id, {
-        action: "other",
-        data: "no data",
-      });
-    });
+  let cmd = keywords[0];
+  let arg = keywords[1];
+  let id = await getOpenTabId();
+  let data;
+  if (cmd == "ls") {
+    data = await ls();
+  } else if (cmd == "cd") {
+    data = await cd(arg);
   }
+  chrome.tabs.sendMessage(id, {
+    action: cmd,
+    data: data,
+  });
+
+  // getOpenTabId().then((id) => {
+  // if (command === "ls") {
+  // let tabs = ls();
+  // ls().then((tabs) => {
+  //   chrome.tabs.sendMessage(id, {
+  //     action: "ls",
+  //     data: tabs,
+  //   });
+  // });
+  // } else {
+  // }
+  // });
+  // if (command === "ls") {
+  //   ls().then((tabs) => {
+  //     getOpenTabId().then((id) => {
+  //       chrome.tabs.sendMessage(id, {
+  //         action: "ls",
+  //         data: tabs,
+  //       });
+  //     });
+  //   });
+  // } else {
+  //   getOpenTabId().then((id) => {
+  //     chrome.tabs.sendMessage(id, {
+  //       action: "other",
+  //       data: "no data",
+  //     });
+  //   });
+  // }
 }
 
 function getKeywords(command) {
