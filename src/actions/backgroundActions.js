@@ -1,4 +1,4 @@
-import { cd, ls } from "./backroundCommands";
+import { cd, ls, rm } from "./backroundCommands";
 
 async function getOpenTabId() {
   let id;
@@ -27,6 +27,8 @@ async function executeCommand(command) {
     data = await ls();
   } else if (cmd == "cd") {
     data = await cd(arg);
+  } else if (cmd == "rm") {
+    data = await rm(arg);
   }
   chrome.tabs.sendMessage(id, {
     action: cmd,

@@ -15,9 +15,13 @@ async function ls() {
 }
 
 async function cd(arg) {
-  console.log("arg ", arg);
   let tabs = await chrome.tabs.query({});
   chrome.tabs.update(tabs[Number.parseInt(arg) - 1].id, { active: true });
 }
 
-export { ls, cd };
+async function rm(arg) {
+  let tabs = await chrome.tabs.query({});
+  chrome.tabs.remove(tabs[Number.parseInt(arg) - 1].id);
+}
+
+export { ls, cd, rm };
