@@ -3,7 +3,7 @@ import {
   displayAllTabs,
   openTerminal,
 } from "./actions/contentActions.js";
-import { ls } from "./actions/domActions.js";
+import { find, ls } from "./actions/domActions.js";
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   chrome.extension.sendMessage({action: "ping"}, function(resp) {
@@ -24,6 +24,8 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     closeTerminal(terminal);
   } else if (message.action == "ls") {
     ls(message.data);
+  }else if (message.action == "find") {
+    find(message.data);
   }
   // cd command is handled in bg script
 

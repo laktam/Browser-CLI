@@ -24,4 +24,17 @@ async function rm(arg) {
   chrome.tabs.remove(tabs[Number.parseInt(arg) - 1].id);
 }
 
-export { ls, cd, rm };
+async function find(arg) {
+  arg = arg.slice(1, arg.length - 1);
+  console.log("arg ", arg);
+  let tabs = await ls();
+  tabs = tabs.filter((tab) => tab.includes(arg));
+  console.log("found tabs ", tabs);
+  return tabs;
+  // let data = {};
+  // for(let tab of tabs){
+
+  // }
+}
+
+export { ls, cd, rm, find };

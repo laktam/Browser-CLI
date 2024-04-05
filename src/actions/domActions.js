@@ -51,9 +51,20 @@ function ls(data) {
   }
   resultSection.innerHTML = s;
 }
+
+function find(data) {
+  const resultSection = document.getElementById("terminalResultSection");
+  console.log("resultsecion", resultSection);
+  let s = "";
+  for (let tab of data) {
+    s += `<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${tab}</p>`;
+  }
+  resultSection.innerHTML = s;
+}
 export {
   createTerminalContainer,
   createTerminalInput,
   createResultSection,
   ls,
+  find,
 };
