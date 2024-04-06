@@ -61,10 +61,17 @@ function find(data) {
   }
   resultSection.innerHTML = s;
 }
+
+function pwd(data) {
+  const resultSection = document.getElementById("terminalResultSection");
+  resultSection.innerHTML = `<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${data}</p>`;
+}
+
 export {
   createTerminalContainer,
   createTerminalInput,
   createResultSection,
   ls,
   find,
+  pwd,
 };

@@ -37,4 +37,9 @@ async function find(arg) {
   // }
 }
 
-export { ls, cd, rm, find };
+async function pwd() {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  return tab.title + " : " + tab.url;
+}
+
+export { ls, cd, rm, find, pwd };

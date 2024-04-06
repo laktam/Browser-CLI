@@ -1,10 +1,7 @@
-import { cd, find, ls, rm } from "./backroundCommands";
+import { cd, find, ls, pwd, rm } from "./backroundCommands";
 
 async function getOpenTabId() {
   let id;
-  // chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-  //   id = tabs[0].id;
-  // });
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   console.log(tab.id);
   return tab.id;
@@ -31,6 +28,8 @@ async function executeCommand(command) {
     data = await rm(arg);
   } else if (cmd == "find") {
     data = await find(arg);
+  }else if (cmd == "pwd") {
+    data = await pwd();
   }
   chrome.tabs.sendMessage(id, {
     action: cmd,
