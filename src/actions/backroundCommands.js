@@ -42,4 +42,24 @@ async function pwd() {
   return tab.title + " : " + tab.url;
 }
 
-export { ls, cd, rm, find, pwd };
+async function create(command) {
+  let keywords = getKeywords(command);
+  let active = false;
+  let url = "";
+  if (keywords[1] == "--active" || keywords[1] == "-a") {
+    active = true;
+    url = keywords[2].slice(1, keywords[2].length - 1);
+  } else {
+    url = keywords[1].slice(1, keywords[1].length - 1);
+  }
+  chrome.tabs.create({
+    active,
+    url,
+  });
+}
+
+function getKeywords(command) {
+  // const keyword = [];
+  return command.split(" ");
+}
+export { ls, cd, rm, find, pwd, create };

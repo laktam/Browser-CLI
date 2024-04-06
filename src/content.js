@@ -24,13 +24,14 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     closeTerminal(terminal);
   } else if (message.action == "ls") {
     ls(message.data);
-  }else if (message.action == "find") {
+  } else if (message.action == "find") {
     find(message.data);
-  }else if (message.action == "pwd") {
+  } else if (message.action == "pwd") {
     pwd(message.data);
   }
-  // cd command is handled in bg script
-
+  // commands  handled in bg script
+  // cd
+  // create
   //???
 
   //clear input after each background message
