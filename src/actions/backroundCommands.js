@@ -58,8 +58,27 @@ async function create(command) {
   });
 }
 
+async function group(command) {
+  let keywords = getKeywords(command);
+  let tabs = await chrome.tabs.query({});
+  let name = "";
+  if (keywords[1] == "--new" || keywords[1] == "-n") {
+    name = keywords[2].slice(1, keywords[2].length - 1);
+    let [cmd, option, ...indexes] = keywords;
+    console.log("ids ", indexes);
+    indexes = indexes.map((id) => Number.parseInt(id) - 1);
+    let tabIds = [];
+    for (let index of indexes) {
+      tabIds.push(tabs[index].id);
+    }
+    console.log("Tabids ", tabIds);
+
+    chrome.tabs.group({ tabIds });
+  }
+}
+
 function getKeywords(command) {
   // const keyword = [];
   return command.split(" ");
 }
-export { ls, cd, rm, find, pwd, create };
+export { ls, cd, rm, find, pwd, create, group };
