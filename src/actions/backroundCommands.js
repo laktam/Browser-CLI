@@ -61,10 +61,10 @@ async function create(command) {
 async function group(command) {
   let keywords = getKeywords(command);
   let tabs = await chrome.tabs.query({});
-  let name = "";
-  if (keywords[1] == "--new" || keywords[1] == "-n") {
+  let groupId;
+  if (keywords[1] == "--new") {
+    let [cmd, option, name, ...indexes] = keywords;
     name = keywords[2].slice(1, keywords[2].length - 1);
-    let [cmd, option, ...indexes] = keywords;
     console.log("ids ", indexes);
     indexes = indexes.map((id) => Number.parseInt(id) - 1);
     let tabIds = [];
@@ -73,7 +73,22 @@ async function group(command) {
     }
     console.log("Tabids ", tabIds);
 
-    chrome.tabs.group({ tabIds });
+    groupId = await chrome.tabs.group({ tabIds });
+    await chrome.tabGroups.update(groupId, {
+      collapsed: false,
+      title: name,
+    });
+  } else if (keywords[1] == "--name") {
+    let [cmd, option, name, ...indexes] = keywords;
+    name = keywords[2].slice(1, keywords[2].length - 1);
+    indexes = indexes.map((id) => Number.parseInt(id) - 1);
+    let tabIds = [];
+    for (let index of indexes) {
+      tabIds.push(tabs[index].id);
+    }
+    let tabGroups = await chrome.tabGroups.query({ title: name });
+    console.log("groups found ", tabGroups);
+    await chrome.tabs.group({ tabIds, groupId: tabGroups[0].id });
   }
 }
 
