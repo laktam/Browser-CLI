@@ -1,4 +1,4 @@
-import { cd, create, find, ls, pwd, rm } from "./backroundCommands";
+import { cd, create, find, group, ls, pwd, rm } from "./backroundCommands";
 
 async function getOpenTabId() {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -31,6 +31,8 @@ async function executeCommand(command) {
     data = await pwd();
   } else if (cmd == "create") {
     data = await create(command);
+  } else if (cmd == "group") {
+    data = await group(command);
   }
   chrome.tabs.sendMessage(id, {
     action: cmd,
