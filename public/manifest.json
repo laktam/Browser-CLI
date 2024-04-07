@@ -6,7 +6,8 @@
     "permissions": [
         "activeTab",
         "tabs",
-        "commands"
+        "commands",
+        "tabGroups"
     ],
     "background": {
         "service_worker": "background.js"
