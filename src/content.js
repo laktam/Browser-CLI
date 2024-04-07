@@ -32,6 +32,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   // commands  handled in bg script
   // cd
   // create
+  // group
   //???
 
   //clear input after each background message
