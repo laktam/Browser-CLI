@@ -65,13 +65,7 @@ async function group(command) {
   if (keywords[1] == "--new") {
     let [cmd, option, name, ...indexes] = keywords;
     name = keywords[2].slice(1, keywords[2].length - 1);
-    console.log("ids ", indexes);
-    indexes = indexes.map((id) => Number.parseInt(id) - 1);
-    let tabIds = [];
-    for (let index of indexes) {
-      tabIds.push(tabs[index].id);
-    }
-    console.log("Tabids ", tabIds);
+    let tabIds = await tabIndexToId(indexes);
 
     groupId = await chrome.tabs.group({ tabIds });
     await chrome.tabGroups.update(groupId, {
@@ -81,11 +75,7 @@ async function group(command) {
   } else if (keywords[1] == "--name") {
     let [cmd, option, name, ...indexes] = keywords;
     name = keywords[2].slice(1, keywords[2].length - 1);
-    indexes = indexes.map((id) => Number.parseInt(id) - 1);
-    let tabIds = [];
-    for (let index of indexes) {
-      tabIds.push(tabs[index].id);
-    }
+    let tabIds = await tabIndexToId(indexes);
     let tabGroups = await chrome.tabGroups.query({ title: name });
     console.log("groups found ", tabGroups);
     await chrome.tabs.group({ tabIds, groupId: tabGroups[0].id });
