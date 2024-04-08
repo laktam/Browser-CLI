@@ -11,6 +11,7 @@ function createTerminalContainer() {
   terminal.style.padding = "10px 25px";
   terminal.style.boxSizing = "border-box";
   terminal.style.borderTop = "1px solid #ccc";
+  terminal.style.overflowY = "scroll";
 
   return terminal;
 }
@@ -22,7 +23,7 @@ function createResultSection() {
   div.style.boxSizing = "border-box";
   div.style.width = "100%";
   div.style.padding = "10px 31px";
-  div.style.overflow = "scroll";
+  // div.style.overflow = "scroll";
   return div;
 }
 
