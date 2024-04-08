@@ -38,6 +38,8 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 
   //clear input after each background message
   terminal.querySelector("#terminal-input").value = "";
+  terminal.scrollTo(0, terminal.scrollHeight);
+
   sendResponse();
   return true;
 });

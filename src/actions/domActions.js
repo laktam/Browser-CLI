@@ -32,8 +32,8 @@ function createTerminalInput() {
   input.setAttribute("id", "terminal-input");
   input.style.width = "100%";
   //   input.style.height = "30px";
-  input.style.position = "fixed";
-  input.style.bottom = "0";
+  // input.style.position = "fixed";
+  // input.style.bottom = "0";
   input.style.padding = "6px";
   input.style.boxSizing = "border-box";
   input.style.border = "1px solid #ccc";
