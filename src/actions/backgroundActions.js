@@ -1,4 +1,13 @@
-import { cd, create, find, group, ls, pwd, rm, ungroup } from "./backroundCommands";
+import {
+  cd,
+  create,
+  find,
+  group,
+  ls,
+  pwd,
+  rm,
+  ungroup,
+} from "./backroundCommands";
 
 async function getOpenTabId() {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -33,9 +42,11 @@ async function executeCommand(command) {
     data = await create(command);
   } else if (cmd == "group") {
     data = await group(command);
-  }else if (cmd == "ungroup") {
+  } else if (cmd == "ungroup") {
     data = await ungroup(command);
   }
+
+  // if cmd == clear , clear will be sent, no function call is necessary
   chrome.tabs.sendMessage(id, {
     action: cmd,
     data: data,

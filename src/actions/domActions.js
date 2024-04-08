@@ -71,6 +71,10 @@ function pwd(data) {
   resultSection.innerHTML = `<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${data}</p>`;
 }
 
+function clear(terminal) {
+  terminal.querySelector("#terminalResultSection").innerHTML = "";
+}
+
 export {
   createTerminalContainer,
   createTerminalInput,
@@ -78,4 +82,5 @@ export {
   ls,
   find,
   pwd,
+  clear,
 };

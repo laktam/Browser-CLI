@@ -3,7 +3,7 @@ import {
   displayAllTabs,
   openTerminal,
 } from "./actions/contentActions.js";
-import { find, ls, pwd } from "./actions/domActions.js";
+import { clear, find, ls, pwd } from "./actions/domActions.js";
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   chrome.extension.sendMessage({action: "ping"}, function(resp) {
@@ -28,6 +28,8 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     find(message.data);
   } else if (message.action == "pwd") {
     pwd(message.data);
+  } else if (message.action == "clear") {
+    clear(terminal);
   }
   // commands  handled in bg script
   // cd
