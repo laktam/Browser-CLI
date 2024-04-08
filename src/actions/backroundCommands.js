@@ -94,10 +94,11 @@ async function group(command) {
 
 async function ungroup(command) {
   let keywords = getKeywords(command);
-  let tabs = await chrome.tabs.query({});
   if (keywords[1] == "--tabs" || keywords[1] == "-t") {
     //this take tab ids
-    chrome.tabs.ungroup({ tabIds });
+    let [cmd, option, ...indexes] = keywords;
+    let tabIds = await tabIndexToId(indexes);
+    await chrome.tabs.ungroup(tabIds);
   }
 }
 
@@ -117,4 +118,4 @@ async function tabIndexToId(indexes) {
   return tabIds;
 }
 
-export { ls, cd, rm, find, pwd, create, group };
+export { ls, cd, rm, find, pwd, create, group, ungroup };
