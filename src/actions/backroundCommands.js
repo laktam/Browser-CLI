@@ -92,8 +92,29 @@ async function group(command) {
   }
 }
 
+async function ungroup(command) {
+  let keywords = getKeywords(command);
+  let tabs = await chrome.tabs.query({});
+  if (keywords[1] == "--tabs" || keywords[1] == "-t") {
+    //this take tab ids
+    chrome.tabs.ungroup({ tabIds });
+  }
+}
+
 function getKeywords(command) {
   // const keyword = [];
   return command.split(" ");
 }
+
+async function tabIndexToId(indexes) {
+  let tabs = await chrome.tabs.query({});
+  indexes = indexes.map((id) => Number.parseInt(id) - 1);
+  let tabIds = [];
+  for (let index of indexes) {
+    tabIds.push(tabs[index].id);
+  }
+  console.log("tab ids in function ", tabIds);
+  return tabIds;
+}
+
 export { ls, cd, rm, find, pwd, create, group };
