@@ -33,6 +33,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   // cd
   // create
   // group
+  //ungroup
   //???
 
   //clear input after each background message
