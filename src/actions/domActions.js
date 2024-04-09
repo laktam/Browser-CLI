@@ -22,7 +22,7 @@ function createResultSection() {
   // div.style.height = "40%";
   div.style.boxSizing = "border-box";
   div.style.width = "100%";
-  div.style.padding = "10px 31px";
+  div.style.padding = "10px 0px";
   // div.style.overflow = "scroll";
   return div;
 }
