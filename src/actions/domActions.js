@@ -12,7 +12,7 @@ function createTerminalContainer() {
   terminal.style.boxSizing = "border-box";
   terminal.style.borderTop = "1px solid #ccc";
   terminal.style.overflowY = "scroll";
-
+  terminal.style.backgroundColor = "#F8F8FF";
   return terminal;
 }
 
@@ -36,7 +36,9 @@ function createTerminalInput() {
   // input.style.bottom = "0";
   input.style.padding = "6px";
   input.style.boxSizing = "border-box";
-  input.style.border = "1px solid #ccc";
+  input.style.border = "0px";
+  input.style.backgroundColor = "#F8F8FF";
+  
   input.addEventListener("keyup", function (event) {
     if (event.key === "Enter") {
       console.log(input.value);
