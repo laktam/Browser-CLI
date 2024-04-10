@@ -21,6 +21,9 @@ function openTerminal() {
   span.textContent = "Browser CLI >";
   let input = createTerminalInput();
 
+  container.addEventListener("click", () => {
+    input.focus();
+  });
   container.appendChild(resultSection);
   container.appendChild(span);
   container.appendChild(input);
