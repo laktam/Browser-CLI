@@ -3,7 +3,6 @@ import { sendInput } from "./contentActions";
 let bgColor = "#F8F8FF";
 function createTerminalContainer() {
   const terminal = document.createElement("div");
-
   terminal.style.position = "fixed";
   terminal.style.bottom = "0";
   terminal.style.width = "100%";
@@ -14,8 +13,11 @@ function createTerminalContainer() {
   terminal.style.borderTop = "1px solid #ccc";
   terminal.style.overflowY = "scroll";
   terminal.style.backgroundColor = bgColor;
-  terminal.style.position = "absolute";
   terminal.style.zIndex = "9999999999";
+  terminal.style.fontFamily = "Helvetica, Verdana, Arial, Sans-Serif"; //"'Courier New', Courier, monospace";
+  terminal.fontSize = "16px";
+  terminal.style.lineHeight = "1.3";
+  terminal.style.fontWeight = "500";
   return terminal;
 }
 
@@ -60,7 +62,7 @@ function ls(data) {
   console.log("resultsecion", resultSection);
   let s = "";
   for (let tab of data) {
-    s += `<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${tab}</p>`;
+    s += `<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;margin: 0px;">${tab}</p>`;
   }
   resultSection.innerHTML = s;
 }
