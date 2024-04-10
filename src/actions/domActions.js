@@ -1,5 +1,6 @@
 import { sendInput } from "./contentActions";
 
+let bgColor = "#F8F8FF";
 function createTerminalContainer() {
   const terminal = document.createElement("div");
 
@@ -12,7 +13,7 @@ function createTerminalContainer() {
   terminal.style.boxSizing = "border-box";
   terminal.style.borderTop = "1px solid #ccc";
   terminal.style.overflowY = "scroll";
-  terminal.style.backgroundColor = "#F8F8FF";
+  terminal.style.backgroundColor = bgColor;
   return terminal;
 }
 
@@ -34,17 +35,21 @@ function createTerminalInput() {
   //   input.style.height = "30px";
   // input.style.position = "fixed";
   // input.style.bottom = "0";
+  input.style.all = "unset";
   input.style.padding = "6px";
   input.style.boxSizing = "border-box";
   input.style.border = "0px";
-  input.style.backgroundColor = "#F8F8FF";
-  
+  input.style.backgroundColor = bgColor;
+  input.style.caret
+  ////////
+
   input.addEventListener("keyup", function (event) {
     if (event.key === "Enter") {
       console.log(input.value);
       sendInput(input.value);
     }
   });
+
   return input;
 }
 

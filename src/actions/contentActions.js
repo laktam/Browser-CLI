@@ -17,9 +17,12 @@ function displayAllTabs(response) {
 function openTerminal() {
   let container = createTerminalContainer();
   let resultSection = createResultSection();
+  let span = document.createElement("span");
+  span.textContent = "Browser CLI >";
   let input = createTerminalInput();
 
   container.appendChild(resultSection);
+  container.appendChild(span);
   container.appendChild(input);
   document.body.appendChild(container);
   input.focus();
