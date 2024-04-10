@@ -14,6 +14,8 @@ function createTerminalContainer() {
   terminal.style.borderTop = "1px solid #ccc";
   terminal.style.overflowY = "scroll";
   terminal.style.backgroundColor = bgColor;
+  terminal.style.position = "absolute";
+  terminal.style.zIndex = "9999999999";
   return terminal;
 }
 
@@ -40,7 +42,7 @@ function createTerminalInput() {
   input.style.boxSizing = "border-box";
   input.style.border = "0px";
   input.style.backgroundColor = bgColor;
-  input.style.caret
+  input.style.caret;
   ////////
 
   input.addEventListener("keyup", function (event) {
