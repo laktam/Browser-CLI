@@ -89,6 +89,20 @@ async function ungroup(command) {
     let [cmd, option, ...indexes] = keywords;
     let tabIds = await tabIndexToId(indexes);
     await chrome.tabs.ungroup(tabIds);
+  } else if (keywords[1] == "-g") {
+    let [group] = await chrome.tabGroups.query({
+      title: keywords[2].slice(1, keywords[2].length - 1),
+    });
+    console.log("group to ungroup ", group);
+    let groupId = group.id;
+    let tabs = await chrome.tabs.query({});
+    let tabIds = [];
+    for (let tab of tabs) {
+      if (tab.groupId == groupId) {
+        tabIds.push(tab.id);
+      }
+    }
+    await chrome.tabs.ungroup(tabIds);
   }
 }
 
