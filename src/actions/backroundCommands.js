@@ -52,6 +52,9 @@ async function create(command) {
   } else {
     url = keywords[1].slice(1, keywords[1].length - 1);
   }
+  if (!url.includes("http")) {
+    url = "https://" + url;
+  }
   chrome.tabs.create({
     active,
     url,
