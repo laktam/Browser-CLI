@@ -1,5 +1,5 @@
 # Browser CLI chrome extension
-a terminal like interface in a web page to facilitate navigation and interaction with chrome tabs and groups.
+a terminal like interface added in the web page when a keyboard shortcut is clicked "ctrl + shift + x" to facilitate navigation and interaction with chrome tabs and groups.
 
 ## Command
 support linux like commands and other new commands
