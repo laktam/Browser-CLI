@@ -33,7 +33,7 @@ async function executeCommand(command) {
   } else if (cmd == "cd") {
     data = await cd(arg);
   } else if (cmd == "rm") {
-    data = await rm(arg);
+    data = await rm(command);
   } else if (cmd == "find") {
     data = await find(arg);
   } else if (cmd == "pwd") {
