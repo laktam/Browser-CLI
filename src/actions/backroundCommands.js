@@ -19,9 +19,29 @@ async function cd(arg) {
   chrome.tabs.update(tabs[Number.parseInt(arg) - 1].id, { active: true });
 }
 
-async function rm(arg) {
-  let tabs = await chrome.tabs.query({});
-  chrome.tabs.remove(tabs[Number.parseInt(arg) - 1].id);
+async function rm(command) {
+  let keywords = getKeywords(command);
+
+  //if it's a goup
+  if (keywords[1] == "-g") {
+    let [group] = await chrome.tabGroups.query({
+      title: keywords[2].slice(1, keywords[2].length - 1),
+    });
+    console.log("group to ungroup ", group);
+    let groupId = group.id;
+    let tabs = await chrome.tabs.query({});
+    let tabIds = [];
+    for (let tab of tabs) {
+      if (tab.groupId == groupId) {
+        tabIds.push(tab.id);
+      }
+    }
+    //delete tabs
+    await chrome.tabs.remove(tabIds);
+  } else {
+    let tabs = await chrome.tabs.query({});
+    chrome.tabs.remove(tabs[Number.parseInt(command) - 1].id);
+  }
 }
 
 async function find(arg) {
