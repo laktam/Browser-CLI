@@ -12,3 +12,8 @@ support linux like commands and other new commands
 7. group : create a new group or add a tab to an existing group
 8. ungroup : delete a group (keep tabs) or delete a tab from a group
 9. rm : remove a tabs or a group with its tabs
+
+## Exemple
+
+https://github.com/user-attachments/assets/6f942187-2b0c-49d8-b9c1-ddc943ad4c80
+
