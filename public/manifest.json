@@ -33,5 +33,8 @@
             },
             "description": "Description of your keyboard shortcut"
         }
+    },
+    "chrome_url_overrides" : {
+        "newtab": "./new-tab/index.html"
     }
 }
