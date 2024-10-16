@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+  
+body {
+  background-color: white;/*#282a36;*/
+  font-family: 'Courier New', Courier, monospace;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#terminal {
+  background-color: black; /*#1e1f29;*/
+  border-radius: 5px;
+  padding: 20px;
+  width: 600px;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+.terminal-input {
+  display: flex;
+  align-items: center;
+}
+
+.prompt {
+  color: #50fa7b;
+  margin-right: 10px;
+}
+
+input[type="text"] {
+  background-color: transparent;
+  border: none;
+  color: #f8f8f2;
+  font-family: inherit;
+  font-size: 1rem;
+  flex-grow: 1;
+  outline: none;
+}
+
+input[type="text"]::placeholder {
+  color: #6272a4;
+}
