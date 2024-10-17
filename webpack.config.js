@@ -1,13 +1,20 @@
 const path = require("path");
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     newTab: "./src/newTab.js",
     background: "./src/background.js",
   },
   output: {
-    filename: "[name].js",
+    filename: (pathData) => {
+      if (pathData.chunk.name === 'newTab') {
+        return 'new-tab/[name].js';
+      }
+      if (pathData.chunk.name === 'background') {
+        return '[name].js';
+      }
+    },
     path: path.resolve(__dirname, "build"),
   },
 };
