@@ -7,6 +7,7 @@
 body {
   background-color: white;/*#282a36;*/
   font-family: 'Courier New', Courier, monospace;
+  color : white;
   height: 100vh;
   display: flex;
   justify-content: center;
