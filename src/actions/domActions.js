@@ -1,4 +1,3 @@
-import { sendInput } from "./contentActions";
 
 function ls(data) {
   const resultSection = document.getElementById("output");
@@ -28,9 +27,6 @@ function clear(terminal) {
 }
 
 export {
-  createTerminalContainer,
-  createTerminalInput,
-  createResultSection,
   ls,
   find,
   pwd,

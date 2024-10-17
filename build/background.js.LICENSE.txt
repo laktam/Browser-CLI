@@ -1,1 +1,0 @@
-//! this send to content script wich doesn't exist on new tab

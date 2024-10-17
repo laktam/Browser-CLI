@@ -14,6 +14,7 @@ module.exports = {
       if (pathData.chunk.name === 'background') {
         return '[name].js';
       }
+      return '[name].js';
     },
     path: path.resolve(__dirname, "build"),
   },
