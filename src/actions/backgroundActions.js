@@ -46,45 +46,16 @@ async function executeCommand(command) {
     data = await ungroup(command);
   }
 
-  // if cmd == clear , clear will be sent, no function call is necessary
-  chrome.tabs.sendMessage(id, {
-    action: cmd,
-    data: data,
-  });
+  chrome.runtime.sendMessage(
+    {
+        action: cmd,
+        data: data,
+      }
+  );
 
-  // getOpenTabId().then((id) => {
-  // if (command === "ls") {
-  // let tabs = ls();
-  // ls().then((tabs) => {
-  //   chrome.tabs.sendMessage(id, {
-  //     action: "ls",
-  //     data: tabs,
-  //   });
-  // });
-  // } else {
-  // }
-  // });
-  // if (command === "ls") {
-  //   ls().then((tabs) => {
-  //     getOpenTabId().then((id) => {
-  //       chrome.tabs.sendMessage(id, {
-  //         action: "ls",
-  //         data: tabs,
-  //       });
-  //     });
-  //   });
-  // } else {
-  //   getOpenTabId().then((id) => {
-  //     chrome.tabs.sendMessage(id, {
-  //       action: "other",
-  //       data: "no data",
-  //     });
-  //   });
-  // }
 }
 
 function getKeywords(command) {
-  // const keyword = [];
   return command.split(" ");
 }
 export { sendCommandToTab, getOpenTabId, executeCommand };
