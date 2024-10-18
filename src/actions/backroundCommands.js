@@ -19,15 +19,17 @@ async function cd(commandObj) {
   chrome.tabs.update(tabs[Number.parseInt(commandObj.arguments[0]) - 1].id, { active: true });
 }
 
-async function rm(command) {
-  let keywords = getKeywords(command);
-
+/**
+ * rm -g {"group_name"}: close group tabs
+ * 
+ */
+async function rm(commandObj) {
   //if it's a goup
-  if (keywords[1] == "-g") {
+  if (commandObj["-g"] != undefined) {
     let [group] = await chrome.tabGroups.query({
-      title: keywords[2].slice(1, keywords[2].length - 1),
+      title: commandObj["-g"].slice(1, commandObj["-g"].length - 1),
     });
-    console.log("group to ungroup ", group);
+
     let groupId = group.id;
     let tabs = await chrome.tabs.query({});
     let tabIds = [];
@@ -36,11 +38,10 @@ async function rm(command) {
         tabIds.push(tab.id);
       }
     }
-    //delete tabs
     await chrome.tabs.remove(tabIds);
   } else {
-    let tabs = await chrome.tabs.query({});
-    chrome.tabs.remove(tabs[Number.parseInt(command) - 1].id);
+    let tabs = await chrome.tabs.query({});// get all tabs
+    chrome.tabs.remove(tabs[Number.parseInt(commandObj.arguments[0]) - 1].id);// remove tab by index
   }
 }
 

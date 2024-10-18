@@ -31,9 +31,10 @@ async function executeCommand(command) {
   } else if (commandObj.command == "cd") {
     data = await cd(commandObj);
   } 
-  // else if (cmd == "rm") {
-  //   data = await rm(command);
-  // } else if (cmd == "find") {
+  else if (commandObj.command == "rm") {
+    data = await rm(commandObj);
+  } 
+  //else if (cmd == "find") {
   //   data = await find(arg);
   // } else if (cmd == "pwd") {
   //   data = await pwd();
