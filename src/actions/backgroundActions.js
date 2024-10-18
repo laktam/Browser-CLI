@@ -22,11 +22,9 @@ function sendCommandToTab(id, command) {
 }
 
 async function executeCommand(command) {
-  //get keyword list
-  const keywords = getKeywords(command);
+  const commandObj = getCommandObject(command);
   let cmd = keywords[0];
   let arg = keywords[1];
-  let id = await getOpenTabId();
   let data;
   if (cmd == "ls") {
     data = await ls();
@@ -55,7 +53,31 @@ async function executeCommand(command) {
 
 }
 
-function getKeywords(command) {
-  return command.split(" ");
+function getCommandObject(command) {
+  command = command.replace("\s{2,}", " ")
+  let keywords = command.split(" ")
+  command = keywords[0]
+  const commandObj ={command}
+
+  
+  if(keywords.length> 1){
+    let i = 0;
+    while(i < keywords.length){
+      if(keywords[i].startsWith('-')){
+        if(i + 1 < keywords.length){
+          commandObj[keywords[i]] = keywords[i + 1]
+          i++;// to jump over the value
+        }
+      }
+      i++;
+    }
+    // last argument(s) index
+    const index = keywords.findLastIndex((element) => element.startsWith('-')) + 2
+    if(index < keywords.length){
+      commandObj["arguments"] = keywords.slice(index)
+    }
+  }
+  console.log("command object", commandObj)
+  return commandObj;
 }
 export { sendCommandToTab, getOpenTabId, executeCommand };
