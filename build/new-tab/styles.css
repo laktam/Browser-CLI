@@ -18,8 +18,8 @@ body {
   background-color: black; /*#1e1f29;*/
   border-radius: 5px;
   padding: 20px;
-  width: 600px;
-  height: 400px;
+  width: 60%;
+  height: 70%;
   overflow-y: scroll;
 }
 
@@ -38,7 +38,7 @@ input[type="text"] {
   border: none;
   color: #f8f8f2;
   font-family: inherit;
-  font-size: 1rem;
+  /* font-size: 1rem; */
   flex-grow: 1;
   outline: none;
 }
