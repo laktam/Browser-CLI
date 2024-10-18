@@ -23,30 +23,31 @@ function sendCommandToTab(id, command) {
 
 async function executeCommand(command) {
   const commandObj = getCommandObject(command);
-  let cmd = keywords[0];
-  let arg = keywords[1];
+  // let cmd = keywords[0];
+  // let arg = keywords[1];
   let data;
-  if (cmd == "ls") {
+  if (commandObj.command == "ls") {
     data = await ls();
-  } else if (cmd == "cd") {
-    data = await cd(arg);
-  } else if (cmd == "rm") {
-    data = await rm(command);
-  } else if (cmd == "find") {
-    data = await find(arg);
-  } else if (cmd == "pwd") {
-    data = await pwd();
-  } else if (cmd == "create") {
-    data = await create(command);
-  } else if (cmd == "group") {
-    data = await group(command);
-  } else if (cmd == "ungroup") {
-    data = await ungroup(command);
-  }
+  } else if (commandObj.command == "cd") {
+    data = await cd(commandObj);
+  } 
+  // else if (cmd == "rm") {
+  //   data = await rm(command);
+  // } else if (cmd == "find") {
+  //   data = await find(arg);
+  // } else if (cmd == "pwd") {
+  //   data = await pwd();
+  // } else if (cmd == "create") {
+  //   data = await create(command);
+  // } else if (cmd == "group") {
+  //   data = await group(command);
+  // } else if (cmd == "ungroup") {
+  //   data = await ungroup(command);
+  // }
 
   chrome.runtime.sendMessage(
     {
-        action: cmd,
+        action: commandObj.command,
         data: data,
       }
   );

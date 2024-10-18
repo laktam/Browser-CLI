@@ -14,9 +14,9 @@ async function ls() {
   return result;
 }
 
-async function cd(arg) {
+async function cd(commandObj) {
   let tabs = await chrome.tabs.query({});
-  chrome.tabs.update(tabs[Number.parseInt(arg) - 1].id, { active: true });
+  chrome.tabs.update(tabs[Number.parseInt(commandObj.arguments[0]) - 1].id, { active: true });
 }
 
 async function rm(command) {
