@@ -21,6 +21,17 @@ function sendCommandToTab(id, command) {
   });
 }
 
+/**
+ * execute a command and send message to newTab.js
+ * the message sent :
+ *  {
+ *     action  // will contain the command or "no-command-found"
+ *     data    // will contain result or the command if it is not found
+ *     command // the whole typed command
+ *  }
+ * 
+ */
+
 async function executeCommand(command) {
   const commandObj = getCommandObject(command);
   // let cmd = keywords[0];
@@ -59,9 +70,9 @@ async function executeCommand(command) {
   }
   chrome.runtime.sendMessage(
     {
-        action: commandObj.command,
-        data: data,
-        command
+        action: commandObj.command, // will contain the command or "no-command-found"
+        data: data,// will contain result or the command if it is not found
+        command // the whole typed command
       }
   );
 

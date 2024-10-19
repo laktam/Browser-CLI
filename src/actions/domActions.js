@@ -13,26 +13,25 @@ function ls(message) {
   printToConsole(s, message)
 }
 
-function find(data) {
-  const resultSection = document.getElementById("output");
+function find(message) {
   let s = "";
-  for (let tab of data) {
+  for (let tab of message.data) {
     s += `<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${tab}</p>`;
   }
-  resultSection.innerHTML = s;
+  printToConsole(s, message);
 }
 
-function pwd(data) {
-  const resultSection = document.getElementById("output");
-  resultSection.innerHTML = `<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${data}</p>`;
+function pwd(message) {
+  let s = `<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${message.data}</p>`;
+  printToConsole(s, message)
 }
 
 function clear(terminal) {
   terminal.querySelector("#output").innerHTML = "";
 }
-function noCommandFound(command) {
-  const resultSection = document.getElementById("output");
-  resultSection.innerText= `'${command}' is not recognized as a command`;
+function noCommandFound(message) {
+  let s = `'${message.data}' is not recognized as a command`;
+  printToConsole(s, message)
 }
 
 export {
@@ -40,5 +39,6 @@ export {
   find,
   pwd,
   clear,
-  noCommandFound
+  noCommandFound,
+  printToConsole
 };
