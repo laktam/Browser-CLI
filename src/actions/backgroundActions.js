@@ -49,6 +49,9 @@ async function executeCommand(command) {
   else if (commandObj.command == "ungroup") {
     data = await ungroup(commandObj);
   }
+  else if(commandObj.command == "clear"){
+    // command managed in newTab.js are sent directly
+  }
   else {
     data = commandObj.command
     commandObj.command = "no-command-found"
