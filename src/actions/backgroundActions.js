@@ -46,9 +46,9 @@ async function executeCommand(command) {
    else if (commandObj.command == "group") {
     data = await group(commandObj);
   } 
-  // else if (cmd == "ungroup") {
-  //   data = await ungroup(command);
-  // }
+  else if (commandObj.command == "ungroup") {
+    data = await ungroup(commandObj);
+  }
   else {
     data = commandObj.command
     commandObj.command = "no-command-found"
@@ -85,6 +85,12 @@ function getCommandObject(command) {
     const index = keywords.findLastIndex((element) => element.startsWith('-')) + 2
     if(index < keywords.length){
       commandObj["arguments"] = keywords.slice(index)
+    }
+    // if the command is like "ungroup -t 1 2 3" 2 and 3 will be in arguments and 2 in -t
+    // so use all last arguments
+    const allLastArgumentsIndex = keywords.findLastIndex((element) => element.startsWith('-')) + 1
+    if(allLastArgumentsIndex < keywords.length){
+      commandObj["allLastArguments"] = keywords.slice(allLastArgumentsIndex)
     }
   }
   console.log("command object", commandObj)
