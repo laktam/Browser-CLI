@@ -30,8 +30,12 @@ function clear(terminal) {
   terminal.querySelector("#output").innerHTML = "";
 }
 function noCommandFound(message) {
-  let s = `'${message.data}' is not recognized as a command`;
-  printToConsole(s, message)
+  if(message.command == ""){
+    printToConsole("", message)
+  }else{
+    let s = `'${message.data}' is not recognized as a command`;
+    printToConsole(s, message)
+  }
 }
 
 export {
