@@ -43,9 +43,10 @@ async function executeCommand(command) {
    else if (commandObj.command == "create") {
     data = await create(commandObj);
   }
-  //  else if (cmd == "group") {
-  //   data = await group(command);
-  // } else if (cmd == "ungroup") {
+   else if (commandObj.command == "group") {
+    data = await group(commandObj);
+  } 
+  // else if (cmd == "ungroup") {
   //   data = await ungroup(command);
   // }
   else {

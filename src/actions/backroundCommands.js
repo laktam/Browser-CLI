@@ -87,24 +87,26 @@ async function create(commandObj) {
   });
 }
 
-async function group(command) {
-  let keywords = getKeywords(command);
-  let tabs = await chrome.tabs.query({});
+/**
+ * group : create a new group or add tabs to a group
+ * --new {group name} {index list} : new group
+ * --name {group name} {index list} : add to existing group
+ * 
+ */
+async function group(commandObj) {
   let groupId;
-  if (keywords[1] == "--new") {
-    let [cmd, option, name, ...indexes] = keywords;
-    name = keywords[2].slice(1, keywords[2].length - 1);
-    let tabIds = await tabIndexToId(indexes);
+  if (commandObj["--new"] != undefined) {
+    let name = commandObj["--new"].slice(1, commandObj["--new"].length - 1);
+    let tabIds = await tabIndexToId(commandObj.arguments);
 
     groupId = await chrome.tabs.group({ tabIds });
     await chrome.tabGroups.update(groupId, {
       collapsed: false,
       title: name,
     });
-  } else if (keywords[1] == "--name") {
-    let [cmd, option, name, ...indexes] = keywords;
-    name = keywords[2].slice(1, keywords[2].length - 1);
-    let tabIds = await tabIndexToId(indexes);
+  } else if (commandObj["--name"] != undefined) {
+    let name = commandObj["--name"].slice(1, commandObj["--name"].length - 1);
+    let tabIds = await tabIndexToId(commandObj.arguments);
     let tabGroups = await chrome.tabGroups.query({ title: name });
     console.log("groups found ", tabGroups);
     await chrome.tabs.group({ tabIds, groupId: tabGroups[0].id });
