@@ -113,18 +113,22 @@ async function group(commandObj) {
   }
 }
 
-async function ungroup(command) {
-  let keywords = getKeywords(command);
-  if (keywords[1] == "--tabs" || keywords[1] == "-t") {
-    //this take tab ids
-    let [cmd, option, ...indexes] = keywords;
+/**
+ * ungroup : ungroup a group or specific tabs from a group
+ * --new {group name} {index list} : new group
+ * --name {group name} {index list} : add to existing group
+ * 
+ */
+async function ungroup(commandObj) {
+  if (commandObj["--tabs"] != undefined || commandObj["-t"] != undefined) {
+    let indexes = commandObj.allLastArguments
     let tabIds = await tabIndexToId(indexes);
     await chrome.tabs.ungroup(tabIds);
   } else if (keywords[1] == "-g") {
+    let title = commandObj["-g"].slice(1, commandObj["-g"].length - 1)
     let [group] = await chrome.tabGroups.query({
-      title: keywords[2].slice(1, keywords[2].length - 1),
+      title,
     });
-    console.log("group to ungroup ", group);
     let groupId = group.id;
     let tabs = await chrome.tabs.query({});
     let tabIds = [];
