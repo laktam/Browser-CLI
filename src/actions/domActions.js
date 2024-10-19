@@ -25,10 +25,15 @@ function pwd(data) {
 function clear(terminal) {
   terminal.querySelector("#output").innerHTML = "";
 }
+function noCommandFound(command) {
+  const resultSection = document.getElementById("output");
+  resultSection.innerText= `'${command}' is not recognized as a command`;
+}
 
 export {
   ls,
   find,
   pwd,
   clear,
+  noCommandFound
 };

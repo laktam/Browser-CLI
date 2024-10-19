@@ -48,7 +48,11 @@ async function executeCommand(command) {
   // } else if (cmd == "ungroup") {
   //   data = await ungroup(command);
   // }
-
+  else {
+    data = commandObj.command
+    commandObj.command = "no-command-found"
+    
+  }
   chrome.runtime.sendMessage(
     {
         action: commandObj.command,

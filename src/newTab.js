@@ -1,4 +1,4 @@
-import { clear, find, ls, pwd } from "./actions/domActions.js";
+import { clear, find, ls, noCommandFound, pwd } from "./actions/domActions.js";
 
 let terminal = document.getElementById('terminal');
 
@@ -18,7 +18,9 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   // group
   //ungroup
   //???
-
+  else if(message.action == "no-command-found"){
+    noCommandFound(message.data)
+  }
   //clear input after each background message
   terminal.querySelector("#commandInput").value = "";
   terminal.scrollTo(0, terminal.scrollHeight);
