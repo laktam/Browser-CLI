@@ -1,11 +1,16 @@
-
-function ls(data) {
+function printToConsole(toPrint, message){
   const resultSection = document.getElementById("output");
-  let s = "";
-  for (let tab of data) {
+  let s = `<div><span class="prompt">></span><span>${message.command}</span></div>`;
+  s += toPrint;
+  resultSection.insertAdjacentHTML("beforeend", s)
+
+}
+function ls(message) {
+  let s = ""
+  for (let tab of message.data) {
     s += `<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;margin: 0px;">${tab}</p>`;
   }
-  resultSection.innerHTML = s;
+  printToConsole(s, message)
 }
 
 function find(data) {
