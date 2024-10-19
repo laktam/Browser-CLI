@@ -37,11 +37,13 @@ async function executeCommand(command) {
   else if (commandObj.command == "find") {
     data = await find(commandObj);
   } 
-  // else if (cmd == "pwd") {
-  //   data = await pwd();
-  // } else if (cmd == "create") {
-  //   data = await create(command);
-  // } else if (cmd == "group") {
+  else if (commandObj.command == "pwd") {
+    data = await pwd();
+  }
+   else if (commandObj.command == "create") {
+    data = await create(commandObj);
+  }
+  //  else if (cmd == "group") {
   //   data = await group(command);
   // } else if (cmd == "ungroup") {
   //   data = await ungroup(command);

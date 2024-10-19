@@ -45,6 +45,10 @@ async function rm(commandObj) {
   }
 }
 
+/**
+ * find {"search keyword"}: search tabs with the keyword
+ * 
+ */
 async function find(commandObj) {
   let searchKeyword = commandObj.arguments[0].slice(1, commandObj.arguments[0].length - 1);
   let tabs = await ls();
@@ -57,18 +61,25 @@ async function pwd() {
   return tab.title + " : " + tab.url;
 }
 
-async function create(command) {
-  let keywords = getKeywords(command);
+/**
+ * create {tab url} : create a tab with a url
+ * --active {tab url} || -a {tab url} 
+ * 
+ */
+async function create(commandObj) {
   let active = false;
   let url = "";
-  if (keywords[1] == "--active" || keywords[1] == "-a") {
+  if (commandObj["--active"] != undefined) {
     active = true;
-    url = keywords[2].slice(1, keywords[2].length - 1);
+    url = commandObj["--active"].slice(1, commandObj["--active"].length - 1);
+  } else if( commandObj["-a"] != undefined){
+    active = true;
+    url = commandObj["-a"].slice(1, commandObj["-a"].length - 1);
   } else {
-    url = keywords[1].slice(1, keywords[1].length - 1);
+    url = commandObj.arguments[0].slice(1, commandObj.arguments[0].length - 1);
   }
   if (!url.includes("http")) {
-    url = "https://" + url;
+    url = "http://" + url;
   }
   chrome.tabs.create({
     active,
