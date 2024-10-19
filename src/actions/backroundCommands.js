@@ -115,8 +115,8 @@ async function group(commandObj) {
 
 /**
  * ungroup : ungroup a group or specific tabs from a group
- * --new {group name} {index list} : new group
- * --name {group name} {index list} : add to existing group
+ * --tabs  {index list} : remove these tabs from there groups
+ * --name {group name} : ungroup this group
  * 
  */
 async function ungroup(commandObj) {
@@ -124,8 +124,8 @@ async function ungroup(commandObj) {
     let indexes = commandObj.allLastArguments
     let tabIds = await tabIndexToId(indexes);
     await chrome.tabs.ungroup(tabIds);
-  } else if (keywords[1] == "-g") {
-    let title = commandObj["-g"].slice(1, commandObj["-g"].length - 1)
+  } else if (commandObj["--name"] != undefined) {
+    let title = commandObj["--name"].slice(1, commandObj["--name"].length - 1)
     let [group] = await chrome.tabGroups.query({
       title,
     });
