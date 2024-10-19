@@ -61,6 +61,7 @@ async function executeCommand(command) {
     {
         action: commandObj.command,
         data: data,
+        command
       }
   );
 
