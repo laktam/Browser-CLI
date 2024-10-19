@@ -34,9 +34,10 @@ async function executeCommand(command) {
   else if (commandObj.command == "rm") {
     data = await rm(commandObj);
   } 
-  //else if (cmd == "find") {
-  //   data = await find(arg);
-  // } else if (cmd == "pwd") {
+  else if (commandObj.command == "find") {
+    data = await find(commandObj);
+  } 
+  // else if (cmd == "pwd") {
   //   data = await pwd();
   // } else if (cmd == "create") {
   //   data = await create(command);

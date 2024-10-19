@@ -45,17 +45,11 @@ async function rm(commandObj) {
   }
 }
 
-async function find(arg) {
-  arg = arg.slice(1, arg.length - 1);
-  console.log("arg ", arg);
+async function find(commandObj) {
+  let searchKeyword = commandObj.arguments[0].slice(1, commandObj.arguments[0].length - 1);
   let tabs = await ls();
-  tabs = tabs.filter((tab) => tab.includes(arg));
-  console.log("found tabs ", tabs);
+  tabs = tabs.filter((tab) => tab.includes(searchKeyword));
   return tabs;
-  // let data = {};
-  // for(let tab of tabs){
-
-  // }
 }
 
 async function pwd() {
