@@ -55,8 +55,6 @@ function draggable(element){
   document.addEventListener("mouseup", (e)=>{
     drag = false;
     console.log("mouse up")
-    mouseClickX = 0
-    mouseClickY = 0
   })
 
   element.addEventListener("mousemove",(e)=>{
