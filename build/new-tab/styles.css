@@ -21,6 +21,9 @@ body {
   width: 60%;
   height: 70%;
   overflow-y: scroll;
+  position: absolute;
+  top : 0px;
+  left: 0px;
 }
 
 .terminal-input {
