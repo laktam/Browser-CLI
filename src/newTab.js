@@ -58,7 +58,7 @@ function makeTerminalDraggable(terminal_header, terminal_container){
     console.log("mouse up")
   })
 
-  terminal_header.addEventListener("mousemove",(e)=>{
+  document.addEventListener("mousemove",(e)=>{
     if(drag){
       let currentMouseX = e.clientX
       let currentMouseY = e.clientY
