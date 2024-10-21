@@ -66,5 +66,14 @@ input[type="text"]::placeholder {
 }
 
 .terminal-header-button {
-  /* pa */
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* This is optional if you want horizontal centering as well */
+  height: 100%;
+}
+
+img {
+  height: 65%;
 }
