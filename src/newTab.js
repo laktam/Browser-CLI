@@ -4,7 +4,7 @@ const terminal = document.getElementById('terminal');
 const terminal_container = document.getElementById('terminal-container');
 const terminal_header = document.getElementById('terminal-header');
 makeTerminalDraggable(terminal_header, terminal_container)
-
+makeHeaderButtonsNotDraggable()
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   if (message.action == "ls") {
@@ -71,4 +71,13 @@ function makeTerminalDraggable(terminal_header, terminal_container){
       console.log("left and top", terminal_container.style.left, terminal_container.style.top)
     }
   })
+}
+
+function makeHeaderButtonsNotDraggable(){
+  let images = document.getElementsByTagName('span')
+  for(let img of images){
+    img.addEventListener('mousedown', (e)=>{
+      e.stopPropagation()
+    })
+  }
 }
