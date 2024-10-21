@@ -6,7 +6,6 @@ const terminal_header = document.getElementById('terminal-header');
 makeTerminalDraggable(terminal_header, terminal_container)
 
 
-
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   if (message.action == "ls") {
     ls(message);
