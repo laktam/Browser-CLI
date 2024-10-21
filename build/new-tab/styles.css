@@ -78,3 +78,10 @@ input[type="text"]::placeholder {
 img {
   height: 65%;
 }
+
+#close-button:hover {
+  background-color: red;
+}
+#maximize-button:hover, #minimize-button:hover {
+  background-color: gainsboro;
+}
