@@ -1,7 +1,9 @@
 import { clear, find, ls, noCommandFound, printToConsole, pwd } from "./actions/domActions.js";
 
-let terminal = document.getElementById('terminal');
-draggable(terminal)
+const terminal = document.getElementById('terminal');
+const terminal_container = document.getElementById('terminal-container');
+const terminal_header = document.getElementById('terminal-header');
+makeTerminalDraggable(terminal_header, terminal_container)
 
 
 
@@ -36,19 +38,19 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 });
 
 
-function draggable(element){
+function makeTerminalDraggable(terminal_header, terminal_container){
   let mouseClickX = 0
   let mouseClickY = 0
-  let x = Number(element.style.left.slice(0,-2))
-  let y = Number(element.style.top.slice(0,-2))
+  let x = Number(terminal_container.style.left.slice(0,-2))
+  let y = Number(terminal_container.style.top.slice(0,-2))
   let drag = false;
 
-  element.addEventListener("mousedown", (e)=>{
+  terminal_header.addEventListener("mousedown", (e)=>{
     drag = true
     mouseClickX = e.clientX
     mouseClickY = e.clientY
-    x = Number(element.style.left.slice(0,-2))
-    y = Number(element.style.top.slice(0,-2))
+    x = Number(terminal_container.style.left.slice(0,-2))
+    y = Number(terminal_container.style.top.slice(0,-2))
     console.log("mouse down")
   })
 
@@ -57,17 +59,17 @@ function draggable(element){
     console.log("mouse up")
   })
 
-  element.addEventListener("mousemove",(e)=>{
+  terminal_header.addEventListener("mousemove",(e)=>{
     if(drag){
       let currentMouseX = e.clientX
       let currentMouseY = e.clientY
     
       
       console.log("x y", x, y)
-      element.style.left = x + currentMouseX - mouseClickX + "px"
-      element.style.top = y +  currentMouseY - mouseClickY + "px"
+      terminal_container.style.left = x + currentMouseX - mouseClickX + "px"
+      terminal_container.style.top = y +  currentMouseY - mouseClickY + "px"
       
-      console.log("left and top", element.style.left, element.style.top)
+      console.log("left and top", terminal_container.style.left, terminal_container.style.top)
     }
   })
 }
