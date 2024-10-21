@@ -14,14 +14,18 @@ async function ls() {
   return result;
 }
 
+/**
+ * Executes a command with the given command object.
+ * @param {CommandObj} commandObj - The command object.
+ */
 async function cd(commandObj) {
   let tabs = await chrome.tabs.query({});
   chrome.tabs.update(tabs[Number.parseInt(commandObj.arguments[0]) - 1].id, { active: true });
 }
 
 /**
- * rm -g {"group_name"}: close group tabs
- * 
+ * Executes a command with the given command object.
+ * @param {CommandObj} commandObj - The command object.
  */
 async function rm(commandObj) {
   //if it's a goup
