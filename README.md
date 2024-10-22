@@ -14,6 +14,10 @@ support linux like commands and other new commands
 9. rm : remove a tabs or a group with its tabs
 
 ## Exemple
+### New version
+In this new version the extension change the new tab of the browser whenever a new tab is created the terminal will appear, it's now exactly like a windows termianl.
+![example image](./resources/example1.png)
 
+### Old version
 https://github.com/user-attachments/assets/6f942187-2b0c-49d8-b9c1-ddc943ad4c80
 
