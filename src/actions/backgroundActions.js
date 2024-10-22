@@ -62,6 +62,8 @@ async function executeCommand(command) {
   }
   else if(commandObj.command == "clear"){
     // command managed in newTab.js are sent directly
+  }else if (commandObj.command == "help"){
+    // command managed in newTab.js are sent directly
   }
   else {
     data = commandObj.command
@@ -72,7 +74,8 @@ async function executeCommand(command) {
     {
         action: commandObj.command, // will contain the command or "no-command-found"
         data: data,// will contain result or the command if it is not found
-        command // the whole typed command
+        command, // the whole typed command
+        commandObj
       }
   );
 
