@@ -1,9 +1,17 @@
+const terminalContainer = document.getElementById('terminal-container')
 const input = document.getElementById('commandInput')
 const terminal = document.getElementById('terminal')
 const closeButton = document.getElementById('close-button')
+const maximizeButton = document.getElementById('maximize-button')
+
 
 closeButton.addEventListener('click', ()=>{
-  document.getElementById('terminal-container').remove()
+  terminalContainer.remove()
+})
+
+maximizeButton.addEventListener('click', ()=>{
+  terminalContainer.style.width = "100%"
+  terminalContainer.style.height = "100%"
 })
 
 terminal.addEventListener("click", () => {
