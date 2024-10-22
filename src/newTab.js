@@ -1,4 +1,4 @@
-import { clear, find, ls, noCommandFound, printToConsole, pwd } from "./actions/domActions.js";
+import { clear, find, help, ls, noCommandFound, printToConsole, pwd } from "./actions/domActions.js";
 
 const terminal = document.getElementById('terminal');
 const terminal_container = document.getElementById('terminal-container');
@@ -15,6 +15,8 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     pwd(message);
   } else if (message.action == "clear") {
     clear(terminal);
+  } else if (message.action == "help") {
+    help(message);
   }
   else if(message.action == "no-command-found"){
     noCommandFound(message)

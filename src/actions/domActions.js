@@ -1,3 +1,10 @@
+import { fullHelp } from "./constants";
+
+/**
+ * 
+ * @param {string} toPrint - a command result to print bellow the command prompt (in html)
+ * @param {string} message - used to print message.command (the full command)
+ */
 function printToConsole(toPrint, message){
   const resultSection = document.getElementById("output");
   let s = `<div><span class="prompt">></span><span>${message.command}</span></div>`;
@@ -38,11 +45,22 @@ function noCommandFound(message) {
   }
 }
 
+function help(message){
+  let {commandObj} = message
+  if(commandObj.arguments == undefined){
+    // full help
+    printToConsole(fullHelp, message) // use a file for costants for help sub pages
+  }else{
+
+  }
+}
+
 export {
   ls,
   find,
   pwd,
   clear,
   noCommandFound,
+  help,
   printToConsole
 };
