@@ -85,3 +85,16 @@ img {
 #maximize-button:hover, #minimize-button:hover {
   background-color: gainsboro;
 }
+
+#help-container{
+  display: flex;
+  
+}
+
+#help-commands{
+  flex: 0 0 80px;
+}
+
+#help-text{
+  flex:1;
+}
