@@ -1,4 +1,4 @@
-import { fullHelp } from "./constants";
+import { fullHelp, helpConstants } from "./constants";
 
 /**
  * 
@@ -51,7 +51,7 @@ function help(message){
     // full help
     printToConsole(fullHelp, message) // use a file for costants for help sub pages
   }else{
-
+    printToConsole(helpConstants[commandObj.arguments[0] + 'Help'], message)
   }
 }
 
