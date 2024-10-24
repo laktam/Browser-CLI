@@ -1,5 +1,5 @@
 # Browser CLI chrome extension
-a terminal like interface added in the web page when a keyboard shortcut is clicked "ctrl + shift + x" by default, to facilitate navigation and interaction with chrome tabs and groups.
+A CLI for the browser to effortlessly manage tabs and groups. Perfect for tab hoarders
 
 ## Commands
 support linux like commands and other new commands
@@ -16,8 +16,10 @@ support linux like commands and other new commands
 ## Exemple
 ### New version
 In this new version the extension change the new tab of the browser whenever a new tab is created the terminal will appear, it's now exactly like a windows termianl.
-![example image](./resources/example1.png)
-
+![example image](./resources/p1.png)
+![example image](./resources/p2.png)
+![example image](./resources/p3.png)
+![example image](./resources/p4.png)
 ### Old version
 https://github.com/user-attachments/assets/6f942187-2b0c-49d8-b9c1-ddc943ad4c80
 
