@@ -55,7 +55,9 @@ async function rm(commandObj) {
  */
 async function find(commandObj) {
   let searchKeyword = commandObj.arguments[0].slice(1, commandObj.arguments[0].length - 1);
+  searchKeyword = searchKeyword.toLowerCase()
   let tabs = await ls();
+  tabs = tabs.map(t => t.toLowerCase())
   tabs = tabs.filter((tab) => tab.includes(searchKeyword));
   return tabs;
 }
