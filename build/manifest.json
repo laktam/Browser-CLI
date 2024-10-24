@@ -1,8 +1,9 @@
 {
     "manifest_version": 3,
     "name": "Browser CLI",
+    "author": "Laktam Abdellah",
     "version": "1.0",
-    "description": "a CLI for the browser",
+    "description": "a CLI for the browser to effortlessly manage tabs and groups. Perfect for tab hoarders",
     "permissions": [
         "activeTab",
         "tabs",
