@@ -3,7 +3,13 @@
     "name": "Browser CLI",
     "author": "Laktam Abdellah",
     "version": "1.0",
-    "description": "a CLI for the browser to effortlessly manage tabs and groups. Perfect for tab hoarders",
+    "description": "A CLI for the browser to effortlessly manage tabs and groups. Perfect for tab hoarders",
+    "icons": {
+    "128": "./new-tab/resources/cmd.png" 
+    },
+    "action": {
+        "default_icon": "./new-tab/resources/cmd.png" 
+    },
     "permissions": [
         "activeTab",
         "tabs",
