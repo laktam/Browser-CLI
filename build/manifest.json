@@ -15,15 +15,6 @@
     "action": {
         "default_popup": "./popup/popup.html"
     },
-    "commands": {
-        "open-terminal": {
-            "suggested_key": {
-                "default": "Ctrl+Shift+X",
-                "mac": "MacCtrl+Shift+X"
-            },
-            "description": "Description of your keyboard shortcut"
-        }
-    },
     "chrome_url_overrides" : {
         "newtab": "./new-tab/index.html"
     }
