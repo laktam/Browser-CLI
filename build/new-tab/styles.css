@@ -61,9 +61,23 @@ input[type="text"]::placeholder {
   height: 25px;
   width: 100%;
   display: flex;
-  justify-content: flex-end;  
+  justify-content: space-between;  
   background-color: white;
   border: 1px solid black;
+  color: black;
+}
+
+/* start : contains icon and "Command Prompt
+  end : 3 buttons 
+*/
+#start, #end{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#cmd-img{
+  padding-inline: 8px;
 }
 
 .terminal-header-button {
@@ -71,7 +85,7 @@ input[type="text"]::placeholder {
   padding-right: 10px;
   display: flex;
   align-items: center;
-  justify-content: center; /* This is optional if you want horizontal centering as well */
+  justify-content: center; /* horizontal centering as well */
   height: 100%;
 }
 
