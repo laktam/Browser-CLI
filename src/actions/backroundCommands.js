@@ -82,11 +82,14 @@ async function create(commandObj) {
   } else {
     url = commandObj.arguments[0].slice(1, commandObj.arguments[0].length - 1);
   }
+  
   if(!url.startsWith("http") && !url.startsWith("https")){
-    url = 'http://' + url
-  }else if (!url.startsWith("www")) {
-    url = "https://www.google.com/search?q=" + url;
-  } 
+    if(url.startsWith("www")){
+      url = 'http://' + url
+    }else {
+      url = "https://www.google.com/search?q=" + url;
+    }
+  }
   chrome.tabs.create({
     active,
     url,
