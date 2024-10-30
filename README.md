@@ -1,6 +1,9 @@
 # Browser CLI chrome extension
 A CLI for the browser to effortlessly manage tabs and groups. Perfect for tab hoarders
 
+## Microsoft add-ons store
+try it if you have microsoft edge
+https://microsoftedge.microsoft.com/addons/detail/browser-cli/ffhikdhhniilnfaejpfbgdedcopbbojk
 ## Commands
 supported commands:
 1. ls : display all tabs
