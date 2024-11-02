@@ -8,7 +8,8 @@
     "128": "./new-tab/resources/cmd.png" 
     },
     "action": {
-        "default_icon": "./new-tab/resources/cmd.png" 
+        "default_popup": "./new-tab/index.html",
+        "default_icon": "./new-tab/resources/cmd.png"
     },
     "permissions": [
         "activeTab",
