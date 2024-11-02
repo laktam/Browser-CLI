@@ -8,7 +8,7 @@ body {
   background-color: white;/*#282a36;*/
   font-family: 'Courier New', Courier, monospace;
   color : white;
-  height: 100vh;
+  /* height: 100vh; */
 
   display: flex;
   justify-content: center; /* Horizontal centering */
@@ -17,8 +17,8 @@ body {
 }
 
 #terminal-container{
-  width: 60%;
-  height: 70%;
+  width: 700px;
+  height: 350px;
   position: relative;
   user-select: none; 
 }
