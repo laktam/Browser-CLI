@@ -14,12 +14,27 @@
     "permissions": [
         "activeTab",
         "tabs",
-        "tabGroups"
+        "tabGroups",
+        "commands"
     ],
     "background": {
         "service_worker": "background.js"
     },
+    "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
     "content_security_policy": {
         "extension_pages": "default-src 'self'; script-src 'self'; object-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline';"
+    },
+    "commands": {
+    "open-terminal": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+U"
+      },
+      "description": "Open terminal"
     }
+  }
 }
