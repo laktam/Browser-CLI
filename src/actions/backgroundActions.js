@@ -9,6 +9,23 @@ import {
   ungroup,
 } from "./backroundCommands";
 
+function sendOpenTerminalMessage(){
+  chrome.tabs.query({}, (tabs) => {
+    tabs.forEach((tab) => {
+      chrome.tabs.sendMessage(tab.id, {
+        shortcut: "open-terminal",
+      }, (response) => {
+        if (chrome.runtime.lastError) {
+          console.error(`Error injecting HTML into tab ${tab.id}: ${chrome.runtime.lastError.message}`);
+        } else {
+          console.log(`Response from tab ${tab.id}:`, response);
+        }
+      });
+    });
+  });
+}
+
+
 async function getOpenTabId() {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   console.log(tab.id);
@@ -20,6 +37,7 @@ function sendCommandToTab(id, command) {
     action: command,
   });
 }
+
 
 /**
  * execute a command and send message to newTab.js
@@ -34,52 +52,97 @@ function sendCommandToTab(id, command) {
 
 async function executeCommand(command) {
   const commandObj = getCommandObject(command);
-  // let cmd = keywords[0];
-  // let arg = keywords[1];
   let data;
+
   if (commandObj.command == "ls") {
     data = await ls();
   } else if (commandObj.command == "cd") {
     data = await cd(commandObj);
-  } 
-  else if (commandObj.command == "rm") {
+  } else if (commandObj.command == "rm") {
     data = await rm(commandObj);
-  } 
-  else if (commandObj.command == "find") {
+  } else if (commandObj.command == "find") {
     data = await find(commandObj);
-  } 
-  else if (commandObj.command == "pwd") {
+  } else if (commandObj.command == "pwd") {
     data = await pwd();
-  }
-   else if (commandObj.command == "create") {
+  } else if (commandObj.command == "create") {
     data = await create(commandObj);
-  }
-   else if (commandObj.command == "group") {
+  } else if (commandObj.command == "group") {
     data = await group(commandObj);
-  } 
-  else if (commandObj.command == "ungroup") {
+  } else if (commandObj.command == "ungroup") {
     data = await ungroup(commandObj);
+  } else if (commandObj.command == "clear") {
+    // Handle "clear" locally in the current terminal
+    data = "Terminal cleared"; // You can customize this if needed
+  } else if (commandObj.command == "help") {
+    // Handle "help" locally
+    data = "Help command executed"; // Customize as needed
+  } else {
+    data = commandObj.command;
+    commandObj.command = "no-command-found";
   }
-  else if(commandObj.command == "clear"){
-    // command managed in newTab.js are sent directly
-  }else if (commandObj.command == "help"){
-    // command managed in newTab.js are sent directly
-  }
-  else {
-    data = commandObj.command
-    commandObj.command = "no-command-found"
-    
-  }
-  chrome.runtime.sendMessage(
-    {
-        action: commandObj.command, // will contain the command or "no-command-found"
-        data: data,// will contain result or the command if it is not found
-        command, // the whole typed command
-        commandObj
-      }
-  );
 
+  // Send the response to all tabs
+  chrome.tabs.query({}, (tabs) => {
+    tabs.forEach((tab) => {
+      chrome.tabs.sendMessage(tab.id, {
+        action: commandObj.command, // Will contain the command or "no-command-found"
+        data: data, // Will contain result or the command if not found
+        command: command, // The whole typed command
+        commandObj: commandObj, // The command object itself
+      });
+    });
+  });
 }
+
+
+// async function executeCommand(command) {
+//   const commandObj = getCommandObject(command);
+//   // let cmd = keywords[0];
+//   // let arg = keywords[1];
+//   let data;
+//   if (commandObj.command == "ls") {
+//     data = await ls();
+//   } else if (commandObj.command == "cd") {
+//     data = await cd(commandObj);
+//   } 
+//   else if (commandObj.command == "rm") {
+//     data = await rm(commandObj);
+//   } 
+//   else if (commandObj.command == "find") {
+//     data = await find(commandObj);
+//   } 
+//   else if (commandObj.command == "pwd") {
+//     data = await pwd();
+//   }
+//    else if (commandObj.command == "create") {
+//     data = await create(commandObj);
+//   }
+//    else if (commandObj.command == "group") {
+//     data = await group(commandObj);
+//   } 
+//   else if (commandObj.command == "ungroup") {
+//     data = await ungroup(commandObj);
+//   }
+//   else if(commandObj.command == "clear"){
+//     // command managed in newTab.js are sent directly
+//   }else if (commandObj.command == "help"){
+//     // command managed in newTab.js are sent directly
+//   }
+//   else {
+//     data = commandObj.command
+//     commandObj.command = "no-command-found"
+    
+//   }
+//   chrome.runtime.sendMessage(
+//     {
+//         action: commandObj.command, // will contain the command or "no-command-found"
+//         data: data,// will contain result or the command if it is not found
+//         command, // the whole typed command
+//         commandObj
+//       }
+//   );
+
+// }
 
 function getCommandObject(command) {
   command = command.replace("\s{2,}", " ")
@@ -114,4 +177,4 @@ function getCommandObject(command) {
   console.log("command object", commandObj)
   return commandObj;
 }
-export { sendCommandToTab, getOpenTabId, executeCommand };
+export { sendCommandToTab, getOpenTabId, executeCommand, sendOpenTerminalMessage };
