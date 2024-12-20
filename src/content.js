@@ -3,7 +3,7 @@ import { clear, find, help, ls, noCommandFound, printToConsole, pwd } from "./ac
 import { terminalContainer } from "./terminal-css-html/terminal-html.js";
 import terminalStyle from "./terminal-css-html/terminal-style.js";
 
-let terminalDisplayed = false;
+export let terminalDisplayed = false;
 
 console.log("content script loaded")
 // Adding inline CSS styles for the terminal

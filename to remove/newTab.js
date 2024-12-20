@@ -1,5 +1,4 @@
-import { clear, find, help, ls, noCommandFound, printToConsole, pwd } from "./actions/domActions.js";
-
+import { clear, find, help, ls, noCommandFound, printToConsole, pwd } from "../src/actions/domActions.js";
 const terminal = document.getElementById('terminal');
 const terminal_container = document.getElementById('terminal-container');
 const terminal_header = document.getElementById('terminal-header');

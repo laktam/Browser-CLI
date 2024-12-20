@@ -1,3 +1,5 @@
+import { terminalDisplayed } from "../content";
+
 export function centerTerminal(terminalContainer) {
     const width = terminalContainer.offsetWidth;
     const height = terminalContainer.offsetHeight;
@@ -59,7 +61,10 @@ export function addEventListeners(terminalContainer){
     const minimizeButton = terminalContainer.querySelector('#minimize-button');
 
     closeButton.addEventListener('click', () => {
-    terminalContainer.remove();
+    //use the shorcut instead because this close only the current tab and make behaviour inconsistent
+
+    // terminalContainer.style.display = "none";
+    // terminalDisplayed = false;
     });
 
     maximizeButton.addEventListener('click', () => {
