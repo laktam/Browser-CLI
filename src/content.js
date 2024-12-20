@@ -6,7 +6,7 @@ import terminalStyle from "./terminal-css-html/terminal-style.js";
 export let terminalDisplayed = false;
 
 console.log("content script loaded")
-// Adding inline CSS styles for the terminal
+
 const style = document.createElement('style');
 style.textContent = terminalStyle;
 document.head.appendChild(style); // Append styles to head
@@ -49,7 +49,9 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   } else if (message.action == "no-command-found") {
     noCommandFound(message);
   } else if (message.action != undefined){ // so shorcut don't print undefined
-    // Default behavior for unknown commands
+    // this test because when shourtuc is pressed the bg script send a message 
+    // that contains message.shortcut and not message.action so it is undefined
+    // and it get printed, so we need to exclude that case
     
     printToConsole("<br>", message); // print only the command no output
   }

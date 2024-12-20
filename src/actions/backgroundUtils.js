@@ -10,19 +10,32 @@ import {
 } from "./backroundCommands";
 
 function sendOpenTerminalMessage(){
-  chrome.tabs.query({}, (tabs) => {
-    tabs.forEach((tab) => {
-      chrome.tabs.sendMessage(tab.id, {
-        shortcut: "open-terminal",
-      }, (response) => {
-        if (chrome.runtime.lastError) {
-          console.error(`Error injecting HTML into tab ${tab.id}: ${chrome.runtime.lastError.message}`);
-        } else {
-          console.log(`Response from tab ${tab.id}:`, response);
-        }
-      });
-    });
-  });
+  // send to only the current tab
+  getOpenTabId()
+  .then(tabId =>{
+    chrome.tabs.sendMessage(tabId, {
+            shortcut: "open-terminal",
+          }, (response) => {
+            if (chrome.runtime.lastError) {
+              console.error(`Error injecting HTML into tab ${tab.id}: ${chrome.runtime.lastError.message}`);
+            } else {
+              console.log(`Response from tab ${tab.id}:`, response);
+            }
+          });
+  })
+  // chrome.tabs.query({}, (tabs) => {
+  //   tabs.forEach((tab) => {
+  //     chrome.tabs.sendMessage(tab.id, {
+  //       shortcut: "open-terminal",
+  //     }, (response) => {
+  //       if (chrome.runtime.lastError) {
+  //         console.error(`Error injecting HTML into tab ${tab.id}: ${chrome.runtime.lastError.message}`);
+  //       } else {
+  //         console.log(`Response from tab ${tab.id}:`, response);
+  //       }
+  //     });
+  //   });
+  // });
 }
 
 
@@ -72,26 +85,37 @@ async function executeCommand(command) {
     data = await ungroup(commandObj);
   } else if (commandObj.command == "clear") {
     // Handle "clear" locally in the current terminal
-    data = "Terminal cleared"; // You can customize this if needed
+    data = "Terminal cleared"; 
   } else if (commandObj.command == "help") {
     // Handle "help" locally
-    data = "Help command executed"; // Customize as needed
+    data = "Help command executed"; 
   } else {
     data = commandObj.command;
     commandObj.command = "no-command-found";
   }
 
-  // Send the response to all tabs
-  chrome.tabs.query({}, (tabs) => {
-    tabs.forEach((tab) => {
-      chrome.tabs.sendMessage(tab.id, {
-        action: commandObj.command, // Will contain the command or "no-command-found"
-        data: data, // Will contain result or the command if not found
-        command: command, // The whole typed command
-        commandObj: commandObj, // The command object itself
-      });
-    });
+  // send the response to only the open tab
+  getOpenTabId()
+  .then((tabId)=>{
+    chrome.tabs.sendMessage(tabId, {
+            action: commandObj.command, // Will contain the command or "no-command-found"
+            data: data, // Will contain result or the command if not found
+            command: command, // The whole typed command
+            commandObj: commandObj, // The command object itself
+          });
   });
+
+  // Send the response to all tabs
+  // chrome.tabs.query({}, (tabs) => {
+  //   tabs.forEach((tab) => {
+  //     chrome.tabs.sendMessage(tab.id, {
+  //       action: commandObj.command, // Will contain the command or "no-command-found"
+  //       data: data, // Will contain result or the command if not found
+  //       command: command, // The whole typed command
+  //       commandObj: commandObj, // The command object itself
+  //     });
+  //   });
+  // });
 }
 
 

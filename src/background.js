@@ -1,7 +1,7 @@
 import {
   executeCommand,
   sendOpenTerminalMessage,
-} from "./actions/backgroundActions.js";
+} from "./actions/backgroundUtils.js";
 
 console.log("log in content script")
 // Listen for messages from the content script

@@ -55,29 +55,31 @@ export function makeTerminalDraggable(terminalContainer) {
 
 export function addEventListeners(terminalContainer){
     const input = terminalContainer.querySelector('#commandInput');
+    input.focus();
     const terminal = terminalContainer.querySelector('#terminal');
     const closeButton = terminalContainer.querySelector('#close-button');
     const maximizeButton = terminalContainer.querySelector('#maximize-button');
     const minimizeButton = terminalContainer.querySelector('#minimize-button');
 
     closeButton.addEventListener('click', () => {
-    //use the shorcut instead because this close only the current tab and make behaviour inconsistent
-
-    // terminalContainer.style.display = "none";
-    // terminalDisplayed = false;
+      
+      // (old) use the shorcut instead because this close only the current tab and make behaviour inconsistent
+      // (new) open and close terminla on every page separatly
+      terminalContainer.style.display = "none";
+      terminalDisplayed = false;
     });
 
     maximizeButton.addEventListener('click', () => {
-    terminalContainer.style.width = "100%";
-    terminalContainer.style.height = "100%";
+      terminalContainer.style.width = "100%";
+      terminalContainer.style.height = "100%";
     });
 
     minimizeButton.addEventListener('click', () => {
-    terminalContainer.style.display = "none";
+      terminalContainer.style.display = "none";
     });
 
     terminal.addEventListener("click", () => {
-    input.focus();
+      input.focus();
     });
 
     input.addEventListener("keyup", function (event) {

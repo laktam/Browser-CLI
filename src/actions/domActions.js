@@ -23,7 +23,7 @@ function ls(message) {
 function find(message) {
   let s = "";
   for (let tab of message.data) {
-    s += `<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${tab}</p>`;
+    s += `<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;margin: 0px;">${tab}</p>`;
   }
   printToConsole(s, message);
 }
