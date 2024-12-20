@@ -28,6 +28,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }else{
       terminalContainer.style.display = "block";
       terminalDisplayed = true;
+      centerTerminal(terminalContainer);
     }
     sendResponse({status: "Terminal opened"});
   }

@@ -1,6 +1,8 @@
 const terminalStyle = `
-  #terminal-container {
+  * {
     box-sizing: border-box;
+  }
+  #terminal-container {
     margin: 0;
     padding: 0;
 

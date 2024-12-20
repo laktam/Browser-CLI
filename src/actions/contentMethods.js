@@ -77,6 +77,7 @@ export function addEventListeners(terminalContainer){
     maximizeButton.addEventListener('click', () => {
       terminalContainer.style.width = "100%";
       terminalContainer.style.height = "100%";
+      centerTerminal(terminalContainer);
     });
 
     minimizeButton.addEventListener('click', () => {
