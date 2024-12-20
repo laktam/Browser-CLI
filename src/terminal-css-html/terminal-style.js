@@ -93,8 +93,9 @@ const terminalStyle = `
     background-color: gainsboro;
   }
 
-  #close-button {
-    color: red;
+  #close-button:hover{
+    color: white;
+    background-color: red;
   }
 
   #maximize-button {

@@ -73,11 +73,21 @@ export function addEventListeners(terminalContainer){
       terminalContainer.style.height = "350px";
       // return it to it's place
     });
-
+    
+    let maxmized = false; 
     maximizeButton.addEventListener('click', () => {
-      terminalContainer.style.width = "100%";
-      terminalContainer.style.height = "100%";
-      centerTerminal(terminalContainer);
+      if(maxmized){
+        terminalContainer.style.width = "700px";
+        terminalContainer.style.height = "350px";
+        centerTerminal(terminalContainer);
+        maxmized = false;
+      }
+      else {
+        terminalContainer.style.width = "100%";
+        terminalContainer.style.height = "100%";
+        centerTerminal(terminalContainer);
+        maxmized = true;
+      }
     });
 
     minimizeButton.addEventListener('click', () => {
