@@ -67,6 +67,11 @@ export function addEventListeners(terminalContainer){
       // (new) open and close terminla on every page separatly
       terminalContainer.style.display = "none";
       terminalDisplayed = false;
+
+      // return size to normal so if next time it always get opened small
+      terminalContainer.style.width = "700px";
+      terminalContainer.style.height = "350px";
+      // return it to it's place
     });
 
     maximizeButton.addEventListener('click', () => {

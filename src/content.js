@@ -13,6 +13,8 @@ document.head.appendChild(style); // Append styles to head
 
 
 // Inject the terminal container into the body of the page
+// maybe inject it only when the shortcut is clicked
+// and remove the node when it is recliked
 document.body.appendChild(terminalContainer);
 
 addEventListeners(terminalContainer);
@@ -46,6 +48,10 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     clear(terminal);
   } else if (message.action == "help") {
     help(message);
+  } else if (message.action == "cd") {
+    // cd is done with bg script this is just to clear the input
+    terminal.querySelector("#commandInput").value = "";
+    terminal.scrollTo(0, terminal.scrollHeight);
   } else if (message.action == "no-command-found") {
     noCommandFound(message);
   } else if (message.action != undefined){ // so shorcut don't print undefined

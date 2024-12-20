@@ -1,3 +1,5 @@
+import { getOpenTabId } from "./backgroundUtils";
+
 async function ls() {
   let tabs = await chrome.tabs.query({});
   let result = [];
@@ -20,7 +22,12 @@ async function ls() {
  */
 async function cd(commandObj) {
   let tabs = await chrome.tabs.query({});
+
+  // send message to current tab to clean input 
+  getOpenTabId().then((tabId)=> chrome.tabs.sendMessage(tabId, {action: "cd"}) );
+  // change active tab
   chrome.tabs.update(tabs[Number.parseInt(commandObj.arguments[0]) - 1].id, { active: true });
+  return 
 }
 
 /**
