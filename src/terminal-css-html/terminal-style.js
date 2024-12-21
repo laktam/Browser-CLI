@@ -10,7 +10,7 @@ const terminalStyle = `
     font-family: monospace; 
     font-size: 14px;
 
-    background-color: white; /* #282a36; */
+    background-color: black; /* #282a36; */
     font-family: 'Courier New', Courier, monospace;
     color: white;
     display: flex;
@@ -29,12 +29,10 @@ const terminalStyle = `
   }
 
   #terminal {
-    background-color: black; /* #1e1f29; */
     padding: 20px;
     width: 100%;
     height: 95%;
     overflow-y: scroll;
-    /* position: relative; */
   }
 
   .terminal-input {
@@ -42,9 +40,13 @@ const terminalStyle = `
     align-items: center;
   }
 
-  .prompt {
+  .cli-prompt {
     color: #50fa7b;
     margin-right: 10px;
+  }
+
+  #commandInput{
+    background-color: black;
   }
 
   input[type="text"] {
@@ -52,7 +54,6 @@ const terminalStyle = `
     border: none;
     color: #f8f8f2;
     font-family: inherit;
-    /* font-size: 1rem; */
     flex-grow: 1;
     outline: none;
   }
@@ -71,7 +72,6 @@ const terminalStyle = `
     color: black;
   }
 
-  /* start : contains icon and "Command Prompt" end : 3 buttons */
   #start {
     padding-left : 8px;
   }
@@ -90,7 +90,7 @@ const terminalStyle = `
     padding-right: 10px;
     display: flex;
     align-items: center;
-    justify-content: center; /* horizontal centering as well */
+    justify-content: center; 
     height: 100%;
     cursor: pointer;
     font-weight: bold;

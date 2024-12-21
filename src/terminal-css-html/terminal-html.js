@@ -20,7 +20,7 @@ terminalContainer.innerHTML = `
       <br><br>
     </div>
     <div class="terminal-input">
-      <span class="prompt">></span>
+      <span class="cli-prompt">></span>
       <input type="text" id="commandInput" autocomplete="off">
     </div>
   </div>
