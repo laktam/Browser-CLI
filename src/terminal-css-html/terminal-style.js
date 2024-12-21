@@ -6,6 +6,10 @@ const terminalStyle = `
     margin: 0;
     padding: 0;
 
+    all: unset; 
+    font-family: monospace; 
+    font-size: 14px;
+
     background-color: white; /* #282a36; */
     font-family: 'Courier New', Courier, monospace;
     color: white;
@@ -68,6 +72,9 @@ const terminalStyle = `
   }
 
   /* start : contains icon and "Command Prompt" end : 3 buttons */
+  #start {
+    padding-left : 8px;
+  }
   #start, #end {
     display: flex;
     justify-content: center;

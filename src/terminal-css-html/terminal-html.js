@@ -4,7 +4,7 @@ terminalContainer.id = "terminal-container";
 terminalContainer.innerHTML = `
   <div id="terminal-header">
     <div id="start">
-      Command Prompt
+        Command Prompt
     </div>
     <div id="end">
       <span class="terminal-header-button" id="minimize-button">_</span>
