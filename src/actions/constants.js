@@ -21,6 +21,7 @@ const helpConstants = {
     Examples
     <br>
     rm 15
+    <br>
     rm -g "group name"
     <br>
     </div>
@@ -55,6 +56,7 @@ const helpConstants = {
     Examples
     <br>
     create "search this on google"
+    <br>
     create -a "http://example.com"
     </div>
     <br>
@@ -76,6 +78,7 @@ const helpConstants = {
     Examples
     <br>
     group --new "Java" 1 5 15
+    <br>
     group --name "C" 4 5
     <br>
     </div>
@@ -97,6 +100,7 @@ const helpConstants = {
     Examples
     <br>
     ungroup --tabs 1 5 15
+    <br>
     ungroup --name "Java"
     <br>
     </div>

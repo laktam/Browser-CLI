@@ -7,7 +7,7 @@ import { fullHelp, helpConstants } from "./constants";
  */
 function printToConsole(toPrint, message){
   const resultSection = document.getElementById("output");
-  let s = `<div><span class="prompt">></span><span>${message.command}</span></div>`;
+  let s = `<div><span class="cli-prompt">></span><span>${message.command}</span></div>`;
   s += toPrint;
   resultSection.insertAdjacentHTML("beforeend", s)
 
