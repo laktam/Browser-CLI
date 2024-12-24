@@ -1,8 +1,6 @@
 const terminalStyle = `
-  * {
-    box-sizing: border-box;
-  }
   #terminal-container {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 
@@ -29,6 +27,7 @@ const terminalStyle = `
   }
 
   #terminal {
+    box-sizing: border-box;
     padding: 20px;
     width: 100%;
     height: 95%;
