@@ -54,9 +54,9 @@ export function makeTerminalDraggable(terminalContainer) {
 
 
 export function addEventListeners(terminalContainer){
-    const input = terminalContainer.querySelector('#commandInput');
+    const input = terminalContainer.querySelector('#cli-command-input');
     input.focus();
-    const terminal = terminalContainer.querySelector('#terminal');
+    const terminal = terminalContainer.querySelector('#terminal-body');
     const closeButton = terminalContainer.querySelector('#close-button');
     const maximizeButton = terminalContainer.querySelector('#maximize-button');
     const minimizeButton = terminalContainer.querySelector('#minimize-button');

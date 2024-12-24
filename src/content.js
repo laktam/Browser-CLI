@@ -51,7 +51,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     help(message);
   } else if (message.action == "cd") {
     // cd is done with bg script this is just to clear the input
-    terminal.querySelector("#commandInput").value = "";
+    terminal.querySelector("#cli-command-input").value = "";
     terminal.scrollTo(0, terminal.scrollHeight);
   } else if (message.action == "no-command-found") {
     noCommandFound(message);
@@ -63,7 +63,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     printToConsole("<br>", message); // print only the command no output
   }
 
-  terminal.querySelector("#commandInput").value = "";
+  terminal.querySelector("#cli-command-input").value = "";
   terminal.scrollTo(0, terminal.scrollHeight);
 
   sendResponse();

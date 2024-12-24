@@ -26,7 +26,7 @@ const terminalStyle = `
     z-index: 9999;
   }
 
-  #terminal {
+  #terminal-body {
     box-sizing: border-box;
     padding: 20px;
     width: 100%;
@@ -34,7 +34,7 @@ const terminalStyle = `
     overflow-y: scroll;
   }
 
-  .terminal-input {
+  .terminal-input-container {
     display: flex;
     align-items: center;
   }
@@ -44,21 +44,15 @@ const terminalStyle = `
     margin-right: 10px;
   }
 
-  #commandInput{
+  #cli-command-input{
     background-color: black;
-  }
 
-  input[type="text"] {
     background-color: transparent;
     border: none;
     color: #f8f8f2;
     font-family: inherit;
     flex-grow: 1;
     outline: none;
-  }
-
-  input[type="text"]::placeholder {
-    color: #6272a4;
   }
 
   #terminal-header {

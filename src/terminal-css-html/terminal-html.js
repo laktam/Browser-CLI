@@ -12,16 +12,16 @@ terminalContainer.innerHTML = `
       <span class="terminal-header-button" id="close-button">X</span>
     </div>
   </div>
-  <div id="terminal">
+  <div id="terminal-body">
     <div class="output" id="output">
       Browser CLI
       <br>
       Type help to view command list or help {command} for specific command syntax.
       <br><br>
     </div>
-    <div class="terminal-input">
+    <div class="terminal-input-container">
       <span class="cli-prompt">></span>
-      <input type="text" id="commandInput" autocomplete="off">
+      <input type="text" id="cli-command-input" autocomplete="off">
     </div>
   </div>
 `;
