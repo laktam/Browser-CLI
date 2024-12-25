@@ -40,7 +40,7 @@ const helpConstants = {
     `,
     createHelp : `<div>
     Create a new tab with a given URL or with a google search
-    if the argument dons't start with http or https or www google search is used
+    if the argument dons't contain a dot (".")
     <br><br>
     <div id='help-container'>
     <div id='help-commands'>

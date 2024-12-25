@@ -92,12 +92,17 @@ async function create(commandObj) {
     url = commandObj.arguments[0].slice(1, commandObj.arguments[0].length - 1);
   }
   
-  if(!url.startsWith("http") && !url.startsWith("https")){
-    if(url.startsWith("www")){
-      url = 'http://' + url
-    }else {
-      url = "https://www.google.com/search?q=" + url;
-    }
+  // if(!url.startsWith("http") && !url.startsWith("https")){
+  //   if(url.startsWith("www")){
+  //     url = 'http://' + url
+  //   }else {
+  //     url = "https://www.google.com/search?q=" + url;
+  //   }
+  // }
+  if(!url.includes(".")){
+    url = "https://www.google.com/search?q=" + url;
+  }else {
+    url = 'http://' + url
   }
   chrome.tabs.create({
     active,
