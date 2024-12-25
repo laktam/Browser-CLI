@@ -118,16 +118,22 @@ export function addEventListeners(terminalContainer){
 
     terminalContainer.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowUp') {
+          event.preventDefault()
           console.log('Arrow Up key pressed');
           if(currentCommandIndex > 0) currentCommandIndex--;
-          input.value = "";
-          input.value = commands[currentCommandIndex]
+          showOldCommand(input, commands, currentCommandIndex)
 
       } else if (event.key === 'ArrowDown') {
+          event.preventDefault()
           console.log('Arrow Down key pressed');
           if(currentCommandIndex < commands.length - 1) currentCommandIndex++;
-          input.value = "";
-          input.value = commands[currentCommandIndex]
+          showOldCommand(input, commands, currentCommandIndex)
       }
   });
+}
+
+function showOldCommand(input, commands, index){
+  input.focus()
+  input.value = "";
+  input.value = commands[index]
 }
