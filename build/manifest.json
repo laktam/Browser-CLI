@@ -32,7 +32,7 @@
     "commands": {
     "open-terminal": {
       "suggested_key": {
-        "default": "Ctrl+Shift+U"
+        "default": "Ctrl+I"
       },
       "description": "Open terminal"
     }
