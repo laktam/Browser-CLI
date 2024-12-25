@@ -105,7 +105,29 @@ export function addEventListeners(terminalContainer){
     }
     });
 
+    const commands = [];
+    let currentCommandIndex = 0;
+
     function sendInput(command) {
-    chrome.runtime.sendMessage({ action: "command", command });
+      commands.push(command)
+      currentCommandIndex = commands.length - 1;
+      chrome.runtime.sendMessage({ action: "command", command });
     }
+
+    // arrow up and down for command history
+
+    terminalContainer.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowUp') {
+          console.log('Arrow Up key pressed');
+          if(currentCommandIndex > 0) currentCommandIndex--;
+          input.value = "";
+          input.value = commands[currentCommandIndex]
+
+      } else if (event.key === 'ArrowDown') {
+          console.log('Arrow Down key pressed');
+          if(currentCommandIndex < commands.length - 1) currentCommandIndex++;
+          input.value = "";
+          input.value = commands[currentCommandIndex]
+      }
+  });
 }

@@ -33,8 +33,8 @@ function pwd(message) {
   printToConsole(s, message)
 }
 
-function clear(terminal) {
-  terminal.querySelector("#output").innerHTML = "";
+function clear(terminalBody) {
+  terminalBody.querySelector("#output").innerHTML = "";
 }
 function noCommandFound(message) {
   if(message.command == ""){

@@ -5,11 +5,10 @@ import terminalStyle from "./terminal-css-html/terminal-style.js";
 
 export let terminalDisplayed = false;
 
-console.log("content script loaded")
 
 const style = document.createElement('style');
 style.textContent = terminalStyle;
-document.head.appendChild(style); // Append styles to head
+document.head.appendChild(style);
 
 
 // Inject the terminal container into the body of the page
@@ -19,6 +18,7 @@ document.body.appendChild(terminalContainer);
 
 addEventListeners(terminalContainer);
 
+const terminalBody = terminalContainer.querySelector('#terminal-body');
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.shortcut === "open-terminal") { 
@@ -46,13 +46,13 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   } else if (message.action == "pwd") {
     pwd(message);
   } else if (message.action == "clear") {
-    clear(terminal);
+    clear(terminalBody);
   } else if (message.action == "help") {
     help(message);
   } else if (message.action == "cd") {
     // cd is done with bg script this is just to clear the input
-    terminal.querySelector("#cli-command-input").value = "";
-    terminal.scrollTo(0, terminal.scrollHeight);
+    terminalBody.querySelector("#cli-command-input").value = "";
+    terminalBody.scrollTo(0, terminalBody.scrollHeight);
   } else if (message.action == "no-command-found") {
     noCommandFound(message);
   } else if (message.action != undefined){ // so shorcut don't print undefined
@@ -63,8 +63,8 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     printToConsole("<br>", message); // print only the command no output
   }
 
-  terminal.querySelector("#cli-command-input").value = "";
-  terminal.scrollTo(0, terminal.scrollHeight);
+  terminalBody.querySelector("#cli-command-input").value = "";
+  terminalBody.scrollTo(0, terminalBody.scrollHeight);
 
   sendResponse();
   return true;
