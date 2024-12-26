@@ -1,19 +1,41 @@
 import { getOpenTabId } from "./backgroundUtils";
 
-async function ls() {
-  let tabs = await chrome.tabs.query({});
-  let result = [];
-  console.log(tabs);
-  let counter = 1;
-  for (let tab of tabs) {
-    let tabString = "(" + counter + ") " + tab.title + " : " + tab.url;
-    if (tab.highlighted) {
-      tabString += " *"; //active tab
+async function ls(commandObj) {
+  // if no -g flag
+  console.log(commandObj)
+  if(commandObj["-g"] == undefined){
+    let tabs = await chrome.tabs.query({});
+    let result = [];
+    console.log(tabs);
+    let counter = 1;
+    for (let tab of tabs) {
+      let tabString = "(" + counter + ") " + tab.title + " : " + tab.url;
+      if (tab.highlighted) {
+        tabString += " *"; //active tab
+      }
+      result.push(tabString);
+      counter++;
     }
-    result.push(tabString);
-    counter++;
+    return result;
+  }else {
+
+    const groups = await chrome.tabGroups.query({});
+    const tabs = await chrome.tabs.query({});
+    return groups.map(group => ({
+      ...group,
+      tabs: tabs.filter(tab => tab.groupId === group.id)
+    }));
+    
+    // The method returns an array of tab group objects. Each group object contains:
+
+    // id: group identifier
+    // title: group name
+    // color: group color
+    // collapsed: boolean for group state
+    // windowId: ID of window containing group
+    // tabs: array of tab objects that belong to this group (filtered by matching groupId)
   }
-  return result;
+  
 }
 
 /**
