@@ -13,11 +13,19 @@ function printToConsole(toPrint, message){
 
 }
 function ls(message) {
-  let s = ""
-  for (let tab of message.data) {
-    s += `<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;margin: 0px;">${tab}</p>`;
+  console.log("message.data in ls ", message.data)
+  
+  if(message.commandObj["-g"] == undefined){
+    let s = ""
+    for (let tab of message.data) {
+      s += `<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;margin: 0px;">${tab}</p>`;
+    }
+    printToConsole(s, message)
   }
-  printToConsole(s, message)
+  else{
+    const tree = renderTabGroupTree(message.data);
+    printToConsole(tree, message)
+  }
 }
 
 function find(message) {
@@ -55,6 +63,23 @@ function help(message){
   }
 }
 
+function renderTabGroupTree(groups) {
+  let tree = '<pre>';
+  groups.forEach((group, groupIndex) => {
+    const isLastGroup = groupIndex === groups.length - 1;
+    const groupPrefix = isLastGroup ? '└─' : '├─';
+    tree += `<span style="color: ${group.color}">${groupPrefix} ${group.title}</span>\n`;
+ 
+    group.tabs.forEach((tab, tabIndex) => {
+      const isLastTab = tabIndex === group.tabs.length - 1;
+      const tabPrefix = isLastGroup ? '  ' : '│ ';
+      const tabLine = isLastTab ? '└─' : '├─';
+      tree += `${tabPrefix}${tabLine} ${tab.title}\n`;
+    });
+  });
+  return tree + '</pre>';
+ }
+ 
 export {
   ls,
   find,
