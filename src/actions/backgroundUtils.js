@@ -68,7 +68,7 @@ async function executeCommand(command) {
   let data;
 
   if (commandObj.command == "ls") {
-    data = await ls();
+    data = await ls(commandObj);
   } else if (commandObj.command == "cd") {
     data = await cd(commandObj);
   } else if (commandObj.command == "rm") {
@@ -172,33 +172,31 @@ function getCommandObject(command) {
   command = command.replace("\s{2,}", " ")
   let keywords = command.split(" ")
   command = keywords[0]
-  const commandObj ={command}
-
-  
-  if(keywords.length> 1){
-    let i = 0;
-    while(i < keywords.length){
-      if(keywords[i].startsWith('-')){
-        if(i + 1 < keywords.length){
+  const commandObj = {command}
+ 
+  if(keywords.length > 1) {
+    let i = 0
+    while(i < keywords.length) {
+      if(keywords[i].startsWith('-')) {
+        if(i + 1 < keywords.length && !keywords[i+1].startsWith('-')) {
           commandObj[keywords[i]] = keywords[i + 1]
-          i++;// to jump over the value
+          i++
+        } else {
+          commandObj[keywords[i]] = "true" // Dummy value for flags without values
         }
       }
-      i++;
+      i++
     }
-    // last argument(s) index
     const index = keywords.findLastIndex((element) => element.startsWith('-')) + 2
-    if(index < keywords.length){
+    if(index < keywords.length) {
       commandObj["arguments"] = keywords.slice(index)
     }
-    // if the command is like "ungroup -t 1 2 3" 2 and 3 will be in arguments and 2 in -t
-    // so use all last arguments
     const allLastArgumentsIndex = keywords.findLastIndex((element) => element.startsWith('-')) + 1
-    if(allLastArgumentsIndex < keywords.length){
+    if(allLastArgumentsIndex < keywords.length) {
       commandObj["allLastArguments"] = keywords.slice(allLastArgumentsIndex)
     }
   }
   console.log("command object", commandObj)
-  return commandObj;
-}
+  return commandObj
+ }
 export { sendCommandToTab, getOpenTabId, executeCommand, sendOpenTerminalMessage };
