@@ -30,3 +30,20 @@ commands sent from terminal from bg to content script
     command: command, // The whole typed command
     commandObj: commandObj, // The command object itself    
 }
+
+
+## Command parssing :
+This function parses a command string into an object with these components:
+
+Main command (first word)
+Flag options (starting with '-') and their values
+Trailing arguments after flags
+All arguments after the last flag
+
+Example:
+{
+  command: "ungroup",
+  "-t": "1",
+  "arguments": ["2", "3"],
+  "allLastArguments": ["1", "2", "3"]
+}

@@ -5,6 +5,7 @@ import terminalStyle from "./terminal-css-html/terminal-style.js";
 
 export let terminalDisplayed = false;
 
+console.log("from content script")
 
 const style = document.createElement('style');
 style.textContent = terminalStyle;
