@@ -30,6 +30,15 @@ const helpConstants = {
     List open tabs with there index
     </div>
     <br><br>
+    <div id='help-container'>
+        <div id='help-commands'>
+            <div>-g </div>
+        </div>
+        <div id='help-text'>
+            <div>list groups with there tabs</div>
+        </div>
+    </div>
+    <br>
     `,
     findHelp : `<div>
     Search for tabs with given keyword in the tab title or URL
