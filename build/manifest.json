@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Browser CLI",
     "author": "Laktam Abdellah",
-    "version": "2.0",
+    "version": "2.1",
     "description": "A CLI for the browser to effortlessly manage tabs and groups. Perfect for tab hoarders",
     "icons": {
     "128": "./new-tab/resources/cmd.png" 
