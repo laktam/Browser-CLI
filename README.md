@@ -15,12 +15,10 @@ supported commands:
 9. help : to display commands syntax and usage guide
 
 ## Exemple
-### New version
-In this new version the extension change the new tab of the browser whenever a new tab is created the terminal will appear, it's now exactly like a windows termianl.
-![example image](./resources/p1.png)
-![example image](./resources/p2.png)
-![example image](./resources/p3.png)
-![example image](./resources/p4.png)
-### Old version
-https://github.com/user-attachments/assets/6f942187-2b0c-49d8-b9c1-ddc943ad4c80
-
+Click the link in the extension popup page to configure the shortcut
+Use the keyboard shortcut to display and hide the terminal in current tab
+![example image](./resources/01.png)
+![example image](./resources/02.png)
+![example image](./resources/03.png)
+![example image](./resources/04.png)
+![example image](./resources/05.png)
