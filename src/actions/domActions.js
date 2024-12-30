@@ -64,21 +64,23 @@ function help(message){
 }
 
 function renderTabGroupTree(groups) {
-  let tree = '<pre>';
+  let tree = '<div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">';
   groups.forEach((group, groupIndex) => {
     const isLastGroup = groupIndex === groups.length - 1;
     const groupPrefix = isLastGroup ? '└─' : '├─';
-    tree += `<span style="color: ${group.color}">${groupPrefix} ${group.title}</span>\n`;
- 
+    tree += `<div style="color: ${group.color}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${groupPrefix} ${group.title}</div>`;
+    
     group.tabs.forEach((tab, tabIndex) => {
       const isLastTab = tabIndex === group.tabs.length - 1;
-      const tabPrefix = isLastGroup ? '  ' : '│ ';
+      const tabPrefix = isLastGroup ? '&nbsp;&nbsp;' : '│&nbsp;';
       const tabLine = isLastTab ? '└─' : '├─';
-      tree += `${tabPrefix}${tabLine} ${tab.title}\n`;
+      tree += `<div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-left: 20px;">${tabPrefix}${tabLine} ${tab.title}</div>`;
     });
   });
-  return tree + '</pre>';
- }
+  return tree + '</div>';
+}
+
+
  
 export {
   ls,
